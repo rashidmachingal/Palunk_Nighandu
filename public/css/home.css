@@ -1,0 +1,86 @@
+/* Home Image */
+
+.homeImage {
+  margin-top: 0.6rem;
+}
+
+.homeImage img {
+  width: 140px;
+  height: 130px;
+}
+
+/* Home Titles */
+
+.homeTitles {
+  margin-top: 0.9rem;
+}
+
+.homeTitles h2 {
+  font-weight: 500;
+}
+
+/* Home Search Container */
+
+.searchContainer {
+  width: 40rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Home Search */
+
+.homeSearch {
+  margin-top: 1.4rem;
+  width: 60%;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: 6px;
+  padding-right: 8px;
+}
+
+/* Home Add New Word */
+
+.homeAddWord {
+  margin-top: 2.4rem;
+}
+
+.homeAddWord button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeAddWord button:hover {
+  cursor: pointer;
+}
+
+/* Responsive Design */
+
+@media (max-width: 680px) {
+  .homeSearch {
+    width: 82%;
+  }
+  .searchContainer {
+    width: 82%;
+  }
+  .searchSuggetion {
+    width: 63.6%;
+  }
+  .homeBox {
+    width: 95%;
+  }
+}
+
+@media (max-width: 416px) {
+  .homeSearch {
+    width: 93%;
+  }
+  .searchSuggetion {
+    width: 71.6%;
+  }
+}
