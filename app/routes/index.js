@@ -7,7 +7,7 @@ const pages = path.join(__dirname, "../../pages/")
 
 // serve home page
 router.get("/", (req, res) => {
-    res.send("HELLO")
+    res.render("pages/index")
 })
 
 module.exports = router

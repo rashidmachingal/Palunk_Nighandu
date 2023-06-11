@@ -7,6 +7,9 @@ const indexRoute = require("./app/routes/index");
 // middlewares
 app.use("/", indexRoute)
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
 // serve static files from the "public" directory
 app.use(express.static(__dirname + "/public"));
 
