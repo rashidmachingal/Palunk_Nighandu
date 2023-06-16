@@ -51,11 +51,16 @@
   width: 340px;
   height: 73px;
 }
+
+@media (max-width:350px) {
+  .navbar-logo img{
+    width: 300px;
+  }
+}
 /* navbar end */
 
 /* footer start */
 .footer-container {
-  width: 100vw;
   height: 6rem;
 }
 
@@ -163,7 +168,10 @@
 
 @media (max-width:700px) {
   .search-main{
-    width: 95%;
+    width: 100%;
+  }
+  .main-search div{
+    width: 15%;
   }
 }
 /* main search end */
@@ -210,14 +218,15 @@
   font-size: 25px;
 }
 
-
 @media (max-width: 680px) {
   .content-box {
     width: 96%;
     height: 100%;
   }
+  .content-box h1{
+    font-size: 20px;
+  }
 }
-
 /* content end */
 
 /* round loading start */
@@ -234,7 +243,6 @@
   0% {
     transform: rotate(0);
   }
-
   100% {
     transform: rotate(360deg);
   }
