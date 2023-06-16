@@ -1,0 +1,18 @@
+<div class="result-title mt-1" >
+    <p><span><%= english_word %></span> എന്ന വാക്കിന്റെ അർഥം</p>
+ </div>
+ <div class="result-meaning mt-1" >
+     <ol>
+      <% meanings.forEach((data, index) => { %>
+        <li class="result-item" >
+          <span><%= index + 1 %>.</span><%= data.definition %>
+          <% if (data.part_of_speech !== '-') { %>
+            <span>(<%= data.part_of_speech %>)</span>
+          <% } %>
+          <div title="മാറ്റുക / തെറ്റ് തിരുത്തുക" >
+              <i class="fa-solid fa-pen"></i>
+          </div>
+        </li>
+      <% }) %>
+    </ol>
+</div>

@@ -19,23 +19,26 @@
              <!-- search  -->
              <%- include('../partials/search') %>
              <!-- search  -->
-            <div class="result-title mt-1" >
-               <p><span>something</span> എന്ന വാക്കിന്റെ അർഥം</p>
-            </div>
-            <div class="result-meaning mt-1" >
-                <ol>
-                  <li class="result-item" >
-                    <span>1.</span>അർഥം<span>(noun)</span>
-                    <div title="മാറ്റുക / തെറ്റ് തിരുത്തുക" >
-                        <i class="fa-solid fa-pen"></i>
-                    </div>
-                  </li>
-               </ol>
-            </div>
 
-            <div class="result-add w100 mt-1" >
-                <button>പുതിയ അർഥം ചേർക്കുക</button>
-            </div>
+             <%# render result list if word found start %>
+             <% if (status === true) { %>
+               <%- include('../partials/result') %>
+             <% } %>
+             <%# render result list if word found end %>
+
+             <%# render add new word btn if word found start %>
+             <% if(status === true){ %>
+                <div class="result-add w100 mt-1" >
+                 <button>പുതിയ അർഥം ചേർക്കുക</button>
+                </div>
+             <% } %>
+             <%# render add new word btn if word found end %>
+
+             <%#  render error message if word not found start %>
+             <% if (status === false) { %>
+                <%- include('../partials/notfound') %>
+             <% } %>
+             <%#  render error message if word not found end %>
         </div>
      </div>
 
