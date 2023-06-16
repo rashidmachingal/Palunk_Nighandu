@@ -5,8 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malayalam meaning of something</title>
+    <!-- custom css  -->
+    <link rel="stylesheet" href="/css/result.css">
+    <%- include('../partials/header') %>
 </head>
 <body>
-    
+    <!-- navbar -->
+     <%- include('../partials/navbar') %>
+    <!-- navbar -->
+
+    <div class="w100 item-center" >
+        <div class="main-box" >
+             <!-- search  -->
+             <%- include('../partials/search') %>
+             <!-- search  -->
+            <div class="result-title mt-1" >
+               <p><span>something</span> എന്ന വാക്കിന്റെ അർഥം</p>
+            </div>
+            <div class="result-meaning mt-1" >
+                <ol>
+                  <li class="result-item" >
+                    <span>1.</span>അർഥം<span>(noun)</span>
+                    <div title="മാറ്റുക / തെറ്റ് തിരുത്തുക" >
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+                  </li>
+               </ol>
+            </div>
+
+            <div class="result-add w100 mt-1" >
+                <button>പുതിയ അർഥം ചേർക്കുക</button>
+            </div>
+        </div>
+     </div>
+
+    <!-- footer  -->
+     <%- include('../partials/footer') %>
+    <!-- footer  -->
 </body>
 </html>

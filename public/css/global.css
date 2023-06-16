@@ -10,21 +10,23 @@
 }
 
 /* common styles start */
+button{
+  cursor: pointer;
+}
+
 .w100{
   width: 100%;
 }
+
 .w98{
   width: 98%!important;
 }
 .w80{
   width: 80%!important;
 }
+
 .mt-1{
   margin-top: 1rem;
-}
-
-.pb-1{
- bottom: 0.6rem;
 }
 
 .title h2{
