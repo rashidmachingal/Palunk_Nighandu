@@ -19,16 +19,6 @@
   font-weight: 500;
 }
 
-/* Home Search Container */
-
-.searchContainer {
-  width: 40rem;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* Home Search */
 
 .homeSearch {
