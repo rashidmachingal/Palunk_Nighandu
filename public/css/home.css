@@ -1,76 +1,37 @@
-/* Home Image */
-
-.homeImage {
-  margin-top: 0.6rem;
-}
-
-.homeImage img {
+.home-image img {
   width: 140px;
   height: 130px;
 }
 
-/* Home Titles */
-
-.homeTitles {
-  margin-top: 0.9rem;
+.home-titles h2 {
+  font-weight: 300;
+  font-size: 20px;
 }
 
-.homeTitles h2 {
-  font-weight: 500;
-}
-
-/* Home Search */
-
-.homeSearch {
-  margin-top: 1.4rem;
-  width: 60%;
-  height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  border-radius: 6px;
-  padding-right: 8px;
-}
-
-/* Home Add New Word */
-
-.homeAddWord {
+.home-add-word {
   margin-top: 2.4rem;
 }
 
-.homeAddWord button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.homeAddWord button:hover {
-  cursor: pointer;
-}
-
-/* Responsive Design */
-
 @media (max-width: 680px) {
-  .homeSearch {
+  .home-search {
     width: 82%;
   }
-  .searchContainer {
+  .search-container {
     width: 82%;
   }
-  .searchSuggetion {
+  .search-suggetion {
     width: 63.6%;
   }
-  .homeBox {
+  .home-box {
     width: 95%;
   }
 }
 
 @media (max-width: 416px) {
-  .homeSearch {
+  .home-search {
     width: 93%;
   }
-  .searchSuggetion {
+  .search-suggetion {
     width: 71.6%;
   }
 }

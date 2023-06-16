@@ -6,35 +6,60 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden; /* Hide vertical scrollbar */
-  font-family: "Manjari", sans-serif;
+  font-family: 'Noto Sans Malayalam', sans-serif;
 }
 
+/* common styles start */
+.w100{
+  width: 100%;
+}
+.w98{
+  width: 98%!important;
+}
+.w80{
+  width: 80%!important;
+}
+.mt-1{
+  margin-top: 1rem;
+}
+
+.pb-1{
+ bottom: 0.6rem;
+}
+
+.title h2{
+  font-weight: 500;
+  font-size: 20.6px;
+}
+
+.item-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* common styles end */
+
 /* navbar stat */
-.navbarContainer {
-  width: 100vw;
+.navbar-container {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.navbarLogo img {
+.navbar-logo img {
   width: 340px;
   height: 73px;
 }
 /* navbar end */
 
 /* footer start */
-.footerContainer {
+.footer-container {
   width: 100vw;
   height: 6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.footerBox {
+.footer-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,39 +67,32 @@
   gap: 0.4rem;
 }
 
-.footerBox p {
-  font-family: "Inter", sans-serif;
-}
-
-.footerBox a {
+.footer-box a {
   text-decoration: none;
   color: black;
-  font-family: "Inter", sans-serif;
 }
 
-.footerLinks {
+.footer-links {
   display: flex;
   gap: 0.4rem;
   font-size: 14px;
 }
 
-.socialIcons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.social-icons {
   gap: 0.6rem;
 }
 
-.socialIcons svg {
+.social-icons svg {
   cursor: pointer;
 }
 
-.footerContainer span {
+.footer-container span {
   font-weight: 600;
 }
 /* footer end */
 
-.mainBox {
+/* main grey box start */
+.main-box {
   width: 40rem;
   min-height: 10rem;
   background: var(--primary-color);
@@ -85,27 +103,27 @@
   padding-bottom: 2.5rem;
 }
 
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+@media (max-width:700px) {
+  .main-box{
+    width: 95%;
+  }
 }
+/* main grey box end */
 
 /* main search start */
-
-.searchContainer {
-  width: 40rem;
+.search-container {
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.searchMain{
+.search-main{
   width: 60%;
 }
 
-.mainSearch {
+.main-search {
   margin-top: 1.4rem;
   width: 100%;
   height: 2.5rem;
@@ -114,11 +132,11 @@
   padding-left: 8px;
 }
 
-.mainSearch form {
+.main-search form {
   width: 95%;
 }
 
-.mainSearch input {
+.main-search input {
   width: 100%;
   height: 100%;
   border: none;
@@ -128,10 +146,9 @@
   background: none;
   text-transform: lowercase;
   font-weight: 400;
-  font-family: "Inter", sans-serif;
 }
 
-.mainSearch div{
+.main-search div{
     width: 10%;
     display: flex;
     align-items: center;
@@ -140,14 +157,19 @@
     cursor: pointer;
 }
 
-.mainSearch i{
+.main-search i{
     color: white;
 }
 
+@media (max-width:700px) {
+  .search-main{
+    width: 95%;
+  }
+}
 /* main search end */
 
 /* search suggetion start */
-.searchSuggetion {
+.search-suggetion {
   position: absolute;
   margin-top: 2px;
   width: 24rem;
@@ -158,68 +180,39 @@
   display: none;
 }
 
-.searchSuggetion li {
+.search-suggetion li {
   height: 2rem;
   display: flex;
   align-items: center;
   padding-left: 6px;
-  font-family: "Inter", sans-serif;
 }
 
-.searchSuggetion li:hover {
+.search-suggetion li:hover {
   background: whitesmoke;
   cursor: pointer;
-}
-
-@media (max-width: 680px) {
-  .mainSearch {
-    width: 82%;
-  }
-  .mainBox {
-    width: 95%;
-  }
-  .searchSuggetion {
-    width: 63.6%;
-  }
-}
-
-@media (max-width: 416px) {
-  .mainSearch {
-    width: 93%;
-  }
-}
-
-@media (max-width: 416px) {
-  .searchSuggetion {
-    width: 71.6%;
-  }
 }
 /* search suggetion end */
 
 /* content start */
-.contentBox {
+.content-box {
   background: white !important;
 }
 
-.contentBox a {
+.content-box a {
   font-weight: 600;
   color: rgba(0, 0, 0, 0.829);
   cursor: pointer;
   text-decoration: none;
 }
 
-.contentBox h1 {
+.content-box h1 {
   font-weight: 500;
   font-size: 25px;
-  font-family: "Inter", sans-serif;
 }
 
-.contentBox p {
-  font-family: "Inter", sans-serif;
-}
 
 @media (max-width: 680px) {
-  .contentBox {
+  .content-box {
     width: 96%;
     height: 100%;
   }
