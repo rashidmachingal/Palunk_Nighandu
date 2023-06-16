@@ -9,7 +9,8 @@ router.get("/", (req, res) => {
 
 // render result page
 router.get("/english-malayalam/:word", async (req, res) => {
-    const data = await getWordMeaning(req.params.word)
+    const english_word = req.params.word.replace(/-/g, " ");
+    const data = await getWordMeaning(english_word)
     res.render("pages/result", data)
 })
 
