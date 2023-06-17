@@ -128,6 +128,7 @@ button{
 
 .search-main{
   width: 60%;
+  position: relative;
 }
 
 .main-search {
@@ -150,6 +151,7 @@ button{
   outline: none;
   font-size: 16px;
   padding-left: 0px;
+  padding-right: 5px;
   background: none;
   text-transform: lowercase;
   font-weight: 400;
@@ -182,7 +184,7 @@ button{
 .search-suggetion {
   position: absolute;
   margin-top: 2px;
-  width: 24rem;
+  width: 100%;
   height: auto;
   background: white;
   box-shadow: 0px 0px 5px 1px #00000026;
@@ -199,7 +201,11 @@ button{
 
 .search-suggetion li:hover {
   background: whitesmoke;
-  cursor: pointer;
+}
+
+.search-suggetion a{
+  text-decoration: none;
+  color: black;
 }
 /* search suggetion end */
 

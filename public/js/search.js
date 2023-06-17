@@ -1,9 +1,9 @@
 const searchContainer = document.getElementById("search_container")
 const searchInput = document.getElementById("search")
 const searchSuggestion = document.getElementById("suggestion")
+const searchSuggestionList = document.getElementById("suggestion_list")
 const searchForm = document.getElementById("search_form")
 const searchButton = document.getElementById("search_button")
-const PATH_NAME = window.location.pathname
 
 // show or hide search suggestions based on user interaction
 function displayOrHide(){
@@ -20,6 +20,28 @@ window.addEventListener('click', (event) => {
     }else{
       searchSuggestion.style.display = "none"
     }
+})
+
+//search suggestion datamuse api call + apend search suggestion to ui
+searchInput.addEventListener("input", (e) => {
+  displayOrHide()
+  fetch(`https://api.datamuse.com/sug?s=${e.target.value}&max=5`).then((res) => {
+    return res.json()
+  }).then((data) => {
+    searchSuggestionList.innerHTML = ""
+    data.forEach((el) => {
+      // create a new <li> element
+      let newListItem = document.createElement("li")
+      // create a new <a> element
+      let newLink = document.createElement("a")
+      // remove space and added hifen for href
+      const link = el.word.replace(/\s/g, "-")
+      newLink.href = `/english-malayalam/${link}`
+      newLink.appendChild(newListItem);
+      newListItem.textContent = el.word
+      searchSuggestionList.appendChild(newLink)
+    })
+  })
 })
 
 // handle search
