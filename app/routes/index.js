@@ -14,4 +14,9 @@ router.get("/english-malayalam/:word", async (req, res) => {
     res.render("pages/result", data)
 })
 
+// serve add new word page
+router.get("/add-new-word", async (req, res) => {
+    res.render("pages/add-new-word")
+})
+
 module.exports = router

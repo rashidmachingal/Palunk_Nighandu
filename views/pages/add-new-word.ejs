@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute or add new word in palunk nighandu</title>
+    <!-- custom css  -->
+    <link rel="stylesheet" href="/css/addnew.css">
+    <!-- custom javascript -->
+    <script src="/js/search.js" defer ></script>
+    <!-- header imports -->
+    <%- include('../partials/header') %>
+</head>
+<body>
+
+    <!-- navbar -->
+    <%- include('../partials/navbar') %>
+    <!-- navbar -->
+
+    <div class="w100 item-center" >
+       <div class="main-box" >
+          <div class="title mt_1" >
+            <h2>പുതിയ ഒരു പദം ചേര്‍ക്കുക</h2>
+          </div>
+          <form autoComplete="off" class="form mt-1" >
+
+            <div class="form-group" >
+              <label>ഇംഗ്ലീഷ് പദം</label>
+              <input placeholder="English Word" type="text" />
+              <span>ദയവായി കളം പൂരിപ്പിക്കുക</span>
+            </div>
+
+            <div class="form-group" >
+                <label>രൂപം</label>
+                <select>
+                  <option value="-" >-</option>
+                  <option value="noun" >noun</option>
+                  <option value="noun" >noun</option>
+                  <option value="verb" >verb</option>
+                  <option value="adjective" >adjective</option>
+                  <option value="adverb" >adverb</option>
+                  <option value="proper noun" >proper noun</option>
+                  <option value="phrasal verb" >phrasal verb</option>
+                  <option value="conjunction" >conjunction</option>
+                  <option value="interjection" >interjection</option>
+                  <option value="preposition" >preposition</option>
+                  <option value="prefix" >prefix</option>
+                  <option value="idiom" >idiom</option>
+                  <option value="abbreviation" >abbreviation</option>
+                  <option value="auxiliary verb" >auxiliary verb</option>
+                </select>
+            </div>
+                
+            <div class="form-group" >
+                <label>മലയാള വ്യാഖ്യാനം</label>
+                <input type="text" placeholder="Malayalam Meaning" />
+                <span>ദയവായി കളം പൂരിപ്പിക്കുക</span>
+            </div>
+
+            <div class="add-new-word" >
+                <button>+</button>
+            </div>
+
+            <div class="error-message" >
+             <span>ദയവായി ഒരു മലയാളം അർത്ഥമെങ്കിലും ചേർക്കുക</span>
+            </div>
+
+            <div class="add-preview" >
+               <div class="add-preview-mn" >
+                <div>
+                 <span>noun: </span><span>definition</span>
+                </div>
+                <div>
+                
+                </div>
+              </div>
+           <div class="pb_1" ></div>
+          </div>
+            <div class="form-group" >
+              <button>PUBLISH</button>
+            </div>
+          </form>
+       </div>
+    </div>
+
+    <!-- footer  -->
+      <%- include('../partials/footer') %>
+    <!-- footer  -->
+
+</body>
+</html>
