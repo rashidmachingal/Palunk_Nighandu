@@ -45,13 +45,47 @@ button{
 .navbar-container {
   height: 80px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.fake{
+  width: 200px;
 }
 
 .navbar-logo img {
   width: 340px;
   height: 73px;
+}
+
+.login{
+  width: 10rem;
+  width: 8rem;
+  height: 2rem;
+  gap: 10px;
+  border: none;
+  background: whitesmoke;
+  margin-right: 1.4rem;
+  cursor: pointer;
+}
+
+.login  button{
+  border: none;
+  background: transparent;
+}
+
+@media (max-width:800px) {
+  .fake{
+    display: none;
+  }
+  .navbar-container{
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 10px;
+    gap: 0;
+  }
+  .login{
+    margin-right: 0;
+  }
 }
 
 @media (max-width:350px) {
