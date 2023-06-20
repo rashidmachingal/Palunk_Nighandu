@@ -1,11 +1,7 @@
 const addPopupForm = document.getElementById("add_popup_form")
-const englishWord = document.getElementById("english_word")
-const partOfSpeech = document.getElementById("part_of_speech")
-const malayalamMeaning = document.getElementById("malayalam_meaning")
-const submitButton = document.getElementById("submit_btn")
 const popupContainer = document.getElementById("add_popup_container")
 const newMeaningBtnInResult = document.getElementById("new_meaning_btn")
-const closeIcon = document.getElementById("close_icon")
+const addCloseIcon = document.getElementById("add_close_icon")
 
 // open add new meaning popup
 newMeaningBtnInResult.addEventListener("click", () => {
@@ -13,7 +9,7 @@ newMeaningBtnInResult.addEventListener("click", () => {
 })
 
 // close add new meaning popup
-closeIcon.addEventListener("click", () => {
+addCloseIcon.addEventListener("click", () => {
     popupContainer.style.display = "none"
 })
 

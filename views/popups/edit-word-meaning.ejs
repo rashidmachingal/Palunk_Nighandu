@@ -1,15 +1,16 @@
-<div class="add-new-container" id="add_popup_container" >
+<div class="add-new-container" id="edit_popup_container" >
     <div class="add-new-box" >
-      <div id="add_close_icon"  onClick="" class="add-new-close item_center" >
+      <div id="edit_close_icon"  onClick="" class="add-new-close item_center" >
         <i class="fa-sharp fa-solid fa-xmark"></i>
       </div>
     <div class="add-new-title" >
-      <h4><span><%= english_word %></span> എന്ന വാക്കിന് മറ്റൊരു അർഥം ചേർക്കുക</h4>
+      <h4>എഡിറ്റ് ചെയ്യുക</h4>
      </div>
-     <form id="add_popup_form" autoComplete='off' class='form mt-1' >
+     <form id="edit_popup_form" autoComplete='off' class='form mt-1' >
       <div class="form-group" >
         <label>ഇംഗ്ലീഷ് പദം</label>
         <input id="english_word" value='<%= english_word %>' readonly />
+        <span></span> 
       </div>
       <div  class='form-group' >
         <label>രൂപം</label>
