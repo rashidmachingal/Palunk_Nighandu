@@ -8,7 +8,7 @@
     <!-- custom css  -->
     <link rel="stylesheet" href="/css/addnew.css">
     <!-- custom javascript -->
-    <script src="/js/search.js" defer ></script>
+    <script src="/js/word.js" defer ></script>
     <!-- header imports -->
     <%- include('../partials/header') %>
 </head>
@@ -23,62 +23,56 @@
           <div class="title mt_1" >
             <h2>പുതിയ ഒരു പദം ചേര്‍ക്കുക</h2>
           </div>
-          <form autoComplete="off" class="form mt-1" >
 
+          <div class="add-notice mt-1" >
+            <p>പളുങ്ക് നിഘണ്ടുവിന്റെ ഭാഗമാവാൻ ലോഗിൻ ചെയ്യൽ നിർബന്ധമല്ല ലോഗിൻ ചെയ്താൽ മറ്റു ഉപയോഗങ്ങളോടൊപ്പം താങ്കളുടെ സംഭാവനകൾ ആ പേരിൽ അംഗീകരിക്കപ്പെടുന്നതാണ്.</p>
+          </div>
+
+          <form id="add_new_word" autoComplete="off" class="form mt-1" >
             <div class="form-group" >
               <label>ഇംഗ്ലീഷ് പദം</label>
-              <input placeholder="English Word" type="text" />
-              <span>ദയവായി കളം പൂരിപ്പിക്കുക</span>
+              <input id="english_word" placeholder="English Word" type="text" />
+              <span></span>
             </div>
 
             <div class="form-group" >
                 <label>രൂപം</label>
-                <select>
-                  <option value="-" >-</option>
-                  <option value="noun" >noun</option>
-                  <option value="noun" >noun</option>
-                  <option value="verb" >verb</option>
-                  <option value="adjective" >adjective</option>
-                  <option value="adverb" >adverb</option>
-                  <option value="proper noun" >proper noun</option>
-                  <option value="phrasal verb" >phrasal verb</option>
-                  <option value="conjunction" >conjunction</option>
-                  <option value="interjection" >interjection</option>
-                  <option value="preposition" >preposition</option>
-                  <option value="prefix" >prefix</option>
-                  <option value="idiom" >idiom</option>
-                  <option value="abbreviation" >abbreviation</option>
-                  <option value="auxiliary verb" >auxiliary verb</option>
+                <select id="part_of_speech" >
+                    <option value="-" >-</option>
+                    <option value="noun" >noun</option>
+                    <option value="noun" >noun</option>
+                    <option value="verb" >verb</option>
+                    <option value="adjective" >adjective</option>
+                    <option value="adverb" >adverb</option>
+                    <option value="proper noun" >proper noun</option>
+                    <option value="phrasal verb" >phrasal verb</option>
+                    <option value="conjunction" >conjunction</option>
+                    <option value="interjection" >interjection</option>
+                    <option value="preposition" >preposition</option>
+                    <option value="prefix" >prefix</option>
+                    <option value="idiom" >idiom</option>
+                    <option value="abbreviation" >abbreviation</option>
+                    <option value="auxiliary verb" >auxiliary verb</option>
                 </select>
             </div>
-                
+                    
             <div class="form-group" >
                 <label>മലയാള വ്യാഖ്യാനം</label>
-                <input type="text" placeholder="Malayalam Meaning" />
-                <span>ദയവായി കളം പൂരിപ്പിക്കുക</span>
+                <input id="malayalam_meaning" type="text" placeholder="Malayalam Meaning" />
+                <span></span>
+                <div id="add_new_meaning" >+</div>
             </div>
+            
 
-            <div class="add-new-word" >
-                <button>+</button>
-            </div>
-
-            <div class="error-message" >
-             <span>ദയവായി ഒരു മലയാളം അർത്ഥമെങ്കിലും ചേർക്കുക</span>
+            <div class="error-message" id="error_message" >
+             <span></span>
             </div>
 
             <div class="add-preview" >
-               <div class="add-preview-mn" >
-                <div>
-                 <span>noun: </span><span>definition</span>
-                </div>
-                <div>
-                
-                </div>
-              </div>
-           <div class="pb_1" ></div>
-          </div>
+
+            </div>
             <div class="form-group" >
-              <button>PUBLISH</button>
+              <button type="submit" >PUBLISH</button>
             </div>
           </form>
        </div>

@@ -29,6 +29,10 @@ button{
   margin-top: 1rem;
 }
 
+.pb-1{
+  padding-bottom: 1rem;
+}
+
 .title h2{
   font-weight: 500;
   font-size: 20.6px;
@@ -286,6 +290,7 @@ button{
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  position: relative;
 }
 
 .form-group input{
