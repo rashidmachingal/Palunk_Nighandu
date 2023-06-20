@@ -1,4 +1,5 @@
 const addNewWordForm = document.getElementById("add_new_word")
+const publishButton = addNewWordForm.querySelector("button[type='submit']");
 const englishWord = document.getElementById("english_word")
 const partOfSpeech = document.getElementById("part_of_speech")
 const malayalamMeaning = document.getElementById("malayalam_meaning")
@@ -97,11 +98,36 @@ addNewWordForm.addEventListener("submit", (event) => {
         // show error message if there is no malayalam meaning
         if(Meanings.length === 0) return spanElement.innerHTML = "ദയവായി ഒരു മലയാളം അർത്ഥമെങ്കിലും ചേർക്കുക"
 
+        // change button text to loading
+        publishButton.innerHTML = "loading..."
+
         // final data for submission
         const finalData = {
             english_word: englishWord.value.trim().toLowerCase(),
             meanings: Meanings
         }
-        
+
+        // add new word - api call
+        const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(finalData)
+        }
+
+        fetch("/add-new-word", options ).then((res) => {
+            // if word already exists
+            if(res.status === 400){
+                alert(`${finalData.english_word} എന്ന വാക്ക് ഇതിനകം തന്നെ നിഘണ്ടുവിൽ ഉണ്ട്. പുതിയ അർഥം ചേർക്കാൻ ${finalData.english_word} എന്ന വാക്കിന്റെ പേജ് സന്ദർശിക്കുക`)
+                location.reload()
+            }
+
+            // if word added successfully
+            if(res.status === 201){
+                alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ പദം അവലോകനത്തിനു ശേഷം നിഘണ്ടുവില്‍ ചേര്‍ക്കുന്നതാണ്‌.`)
+                location.reload()
+            }
+        })  
     }
 })

@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+
 // import routes
 const indexRoute = require("./app/routes/index");
 
 // middlewares
+app.use(express.json());
 app.use("/", indexRoute)
 
 // config
