@@ -31,6 +31,14 @@ function displayErrorMessage(element, status) {
     }
 }
 
+// fetch post option
+let options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+}
+
 
 // =================== add-new-meaning page script start ===================
 
@@ -123,15 +131,10 @@ addNewWordForm.addEventListener("submit", (event) => {
             meanings: Meanings
         }
 
-        // add new word - api call
-        const options = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(finalData)
-        }
+        // add body in options
+        options.body = JSON.stringify(finalData)
 
+        // add new word - api call
         fetch("/add-new-word", options ).then((res) => {
             // if word already exists
             if(res.status === 400){
@@ -162,12 +165,38 @@ closeIcon.addEventListener("click", () => {
     popupContainer.style.display = "none"
 })
 
+// add new meaning popup submit
 popupForm.addEventListener("submit", (event) => {
     event.preventDefault()
-    let newData = {
-        definition:malayalamMeaning.value,
-        part_of_speech:partOfSpeech.value
-    }
+    let clicked = false
+
+    // if malayalam meaning empty show error message
+    if(malayalamMeaning.value === ""){
+        if(clicked) return
+        displayErrorMessage(malayalamMeaning, false)
+        clicked = true
+    }else{
+        // remove error message
+        displayErrorMessage(malayalamMeaning, true)
+
+        // data for submit
+        let newData = {
+            definition:malayalamMeaning.value,
+            part_of_speech:partOfSpeech.value
+        }
     
-    const word = englishWord.value
+        // change button text to loading
+        submitButton.innerHTML = "loading..."
+    
+        // add new meaning - api call
+        // add body in options
+        options.body = JSON.stringify(newData)
+        fetch(`/add-new-meaning/${englishWord.value}`, options).then((res) => {
+            if(res.status === 200 ){
+                alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ പദം അവലോകനത്തിനു ശേഷം നിഘണ്ടുവില്‍ ചേര്‍ക്കുന്നതാണ്‌.`)
+                location.reload()
+            }
+        })
+    }
+
 })

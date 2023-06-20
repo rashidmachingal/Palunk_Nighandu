@@ -40,4 +40,29 @@ const addNewWord = async (req, res) => {
   }
 };
 
-module.exports = { getWordMeaning, addNewWord }
+// add a new meaning to an existing word
+const addMeaningToWord = async (req, res) => {
+  try {
+    const { english_word } = req.params;
+
+    // find the word in the database
+    const foundedWord = await Word.findOne({ english_word });
+
+    if (!foundedWord) {
+      return res.status(404).json({ message: 'word not found' });
+    }
+
+    // add the new meaning to the word's meanings array
+    foundedWord.meanings.push(req.body);
+
+    // save the updated word to the database
+    await foundedWord.save();
+
+    res.status(200).json({ message: 'meaning added successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'error occurred while adding the meaning' });
+  }
+};
+
+module.exports = { getWordMeaning, addNewWord, addMeaningToWord }

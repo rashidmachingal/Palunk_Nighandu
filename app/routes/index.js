@@ -1,5 +1,5 @@
 const express = require("express");
-const { getWordMeaning, addNewWord } = require("../controllers/wordController");
+const { getWordMeaning, addNewWord, addMeaningToWord } = require("../controllers/wordController");
 const router = express.Router();
 
 // serve home page
@@ -22,6 +22,11 @@ router.get("/add-new-word", async (req, res) => {
 // add new word to database api
 router.post("/add-new-word", (req, res) => {
     addNewWord(req, res)
+})
+
+// add a new meaning to and existing word
+router.post("/add-new-meaning/:english_word" , (req, res) => {
+    addMeaningToWord(req, res)
 })
 
 module.exports = router
