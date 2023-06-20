@@ -65,4 +65,25 @@ const addMeaningToWord = async (req, res) => {
   }
 };
 
-module.exports = { getWordMeaning, addNewWord, addMeaningToWord }
+// edit word meaning in exsting word
+const editWordMeaning = async (req, res) => {
+  try {
+    const { wordId } = req.params
+
+    Word.findOneAndUpdate(
+      { _id: wordId, 'meanings._id': req.body._id },
+      { $set: { 'meanings.$': req.body } },
+      { new: true }
+      
+    ).then((updatedWord) => {
+      res.status(200).json({ message: "word meaning edited successfully", updatedWord })
+    }).catch((error) => {
+      res.status(500).json(error)
+    })
+
+  } catch (error) {
+    res.status(500).json({ message: 'error occurred while edit word meaning/part_of_speech' });
+  }
+};
+
+module.exports = { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning }
