@@ -62,7 +62,7 @@
     background: #80808093;
     width: 100%;
     min-height: 100vh;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 }
@@ -85,10 +85,13 @@
     height: 1.4rem;
     border-radius: 50%;
     background: #86868660;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.add-new-close svg {
-    margin-left: 0px !important;
+.add-new-close i {
+    font-size: 13px;
 }
 
 .add-new-title {

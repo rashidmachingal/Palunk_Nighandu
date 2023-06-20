@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/result.css">
     <!-- custom js -->
     <script src="/js/search.js" defer ></script>
+    <script src="/js/word.js" defer ></script>
     <%- include('../partials/header') %>
 </head>
 <body>
@@ -31,8 +32,9 @@
              <%# render add new word btn if word found start %>
              <% if(status === true){ %>
                 <div class="result-add w100 mt-1" >
-                 <button>പുതിയ അർഥം ചേർക്കുക</button>
+                 <button id="add_new_meaning_btn" >പുതിയ അർഥം ചേർക്കുക</button>
                 </div>
+                <div id="add_new_meaning" style="display: none;" ></div>
              <% } %>
              <%# render add new word btn if word found end %>
 
@@ -43,6 +45,10 @@
              <%#  render error message if word not found end %>
         </div>
      </div>
+
+      <%#  render if add new word button clicked start %>
+      <%- include('../popups/add-new-meaning') %>
+      <%#  render if add new word button clicked end %>
 
     <!-- footer  -->
      <%- include('../partials/footer') %>

@@ -1,0 +1,45 @@
+<div class="add-new-container" id="popup_container" >
+    <div class="add-new-box" >
+      <div id="close_icon"  onClick="" class="add-new-close item_center" >
+        <i class="fa-sharp fa-solid fa-xmark"></i>
+      </div>
+    <div class="add-new-title" >
+      <h4><span><%= english_word %></span> എന്ന വാക്കിന് മറ്റൊരു അർഥം ചേർക്കുക</h4>
+     </div>
+     <div id="add_new_word" style="display: none;" ></div>
+     <form id="popup_form" autoComplete='off' class='form mt-1' >
+      <div class="form-group" >
+        <label>ഇംഗ്ലീഷ് പദം</label>
+        <input id="english_word" value='<%= english_word %>' readonly />
+      </div>
+      <div  class='form-group' >
+        <label>രൂപം</label>
+        <select id="part_of_speech"  >
+            <option value="-" >-</option>
+            <option value="noun" >noun</option>
+            <option value="noun" >noun</option>
+            <option value="verb" >verb</option>
+            <option value="adjective" >adjective</option>
+            <option value="adverb" >adverb</option>
+            <option value="proper noun" >proper noun</option>
+            <option value="phrasal verb" >phrasal verb</option>
+            <option value="conjunction" >conjunction</option>
+            <option value="interjection" >interjection</option>
+            <option value="preposition" >preposition</option>
+            <option value="prefix" >prefix</option>
+            <option value="idiom" >idiom</option>
+            <option value="abbreviation" >abbreviation</option>
+            <option value="auxiliary verb" >auxiliary verb</option>
+        </select>
+      </div>
+      <div class='form-group' >
+        <label>അർഥം</label>
+        <input id="malayalam_meaning" placeholder='Meaning' type="text" />
+        <span></span> 
+      </div>
+      <div class="form-group mt_1" >
+        <button id="submit_btn" >SUBMIT</button>
+      </div>
+     </form>
+    </div>
+</div>

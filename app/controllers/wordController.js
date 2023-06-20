@@ -20,7 +20,6 @@ const getWordMeaning = async (english_word) => {
 const addNewWord = async (req, res) => {
   try {
     const { english_word, meanings } = req.body;
-    console.log(english_word,"@english_word")
     // if the word already exists sent error message
     const existingWord = await Word.findOne({ english_word });
     if (existingWord) return res.status(400).json({ message: 'word already exists' });

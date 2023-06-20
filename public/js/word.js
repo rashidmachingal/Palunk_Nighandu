@@ -1,13 +1,26 @@
+// form elements start
 const addNewWordForm = document.getElementById("add_new_word")
-const publishButton = addNewWordForm.querySelector("button[type='submit']");
 const englishWord = document.getElementById("english_word")
 const partOfSpeech = document.getElementById("part_of_speech")
 const malayalamMeaning = document.getElementById("malayalam_meaning")
-const addNewMeaningBtn = document.getElementById("add_new_meaning")
-const errorMessage = document.getElementById("error_message")
-const addPreview = document.querySelector(".add-preview")
+const submitButton = document.getElementById("submit_btn")
+// form elements end
 
-// display error message for input field
+// add-new-word page elements start
+const addPreview = document.querySelector(".add-preview")
+const errorMessage = document.getElementById("error_message")
+const addNewMeaningBtn = document.getElementById("add_new_meaning")
+// add-new-word page elements emd
+
+// popup elements start 
+const popupForm = document.getElementById("popup_form")
+const popupContainer = document.getElementById("popup_container")
+const closeIcon = document.getElementById("close_icon")
+const addNewMeaningBtnInResult = document.getElementById("add_new_meaning_btn")
+// popup elements end
+
+
+// display error message function for input field
 function displayErrorMessage(element, status) {
     const errorSpan = element.nextElementSibling;
 
@@ -18,6 +31,9 @@ function displayErrorMessage(element, status) {
     }
 }
 
+
+// =================== add-new-meaning page script start ===================
+
 // array for malayalam meanings
 let Meanings = []
 
@@ -25,7 +41,7 @@ let Meanings = []
 let id = 0
 
 // add malayalam meaning
-addNewMeaningBtn.addEventListener("click", (event) => {
+addNewMeaningBtn?.addEventListener("click", (event) => {
     event.preventDefault()
     let clicked = false
 
@@ -99,7 +115,7 @@ addNewWordForm.addEventListener("submit", (event) => {
         if(Meanings.length === 0) return spanElement.innerHTML = "ദയവായി ഒരു മലയാളം അർത്ഥമെങ്കിലും ചേർക്കുക"
 
         // change button text to loading
-        publishButton.innerHTML = "loading..."
+        submitButton.innerHTML = "loading..."
 
         // final data for submission
         const finalData = {
@@ -130,4 +146,28 @@ addNewWordForm.addEventListener("submit", (event) => {
             }
         })  
     }
+})
+
+// =================== add-new-meaning page script end ===================
+
+// =================== add new-meaning popup script start ===================
+
+// open add new meaning popup
+addNewMeaningBtnInResult.addEventListener("click", () => {
+    popupContainer.style.display = "flex"
+})
+
+// close add new meaning popup
+closeIcon.addEventListener("click", () => {
+    popupContainer.style.display = "none"
+})
+
+popupForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+    let newData = {
+        definition:malayalamMeaning.value,
+        part_of_speech:partOfSpeech.value
+    }
+    
+    const word = englishWord.value
 })
