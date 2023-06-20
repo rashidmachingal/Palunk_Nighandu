@@ -8,7 +8,8 @@
     <!-- custom css  -->
     <link rel="stylesheet" href="/css/addnew.css">
     <!-- custom javascript -->
-    <script src="/js/word.js" defer ></script>
+    <script src="/js/utils/utils.js" defer ></script>
+    <script src="/js//word/add-new-word.js" defer ></script>
     <!-- header imports -->
     <%- include('../partials/header') %>
 </head>
@@ -27,8 +28,7 @@
           <div class="add-notice mt-1" >
             <p>പളുങ്ക് നിഘണ്ടുവിന്റെ ഭാഗമാവാൻ ലോഗിൻ ചെയ്യൽ നിർബന്ധമല്ല ലോഗിൻ ചെയ്താൽ മറ്റു ഉപയോഗങ്ങളോടൊപ്പം താങ്കളുടെ സംഭാവനകൾ ആ പേരിൽ അംഗീകരിക്കപ്പെടുന്നതാണ്.</p>
           </div>
-
-          <form id="add_new_word" autoComplete="off" class="form mt-1" >
+          <form id="add_new_word_form" autoComplete="off" class="form mt-1" >
             <div class="form-group" >
               <label>ഇംഗ്ലീഷ് പദം</label>
               <input id="english_word" placeholder="English Word" type="text" />
