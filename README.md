@@ -18,5 +18,5 @@ Palunk Nighandu is an English-to-Malayalam dictionary web application that empow
 - Ejs - template engine
 
 ### Live Demo
-<a href="https://www.mallunighandu.tk/">Live Demo</a>
+<a href="https://lonely-sweatpants-ant.cyclic.app/">Live Demo</a>
 
