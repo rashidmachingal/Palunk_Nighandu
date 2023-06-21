@@ -1,12 +1,11 @@
-const englishWord = document.getElementById("english_word")
-const partOfSpeech = document.getElementById("part_of_speech")
-const malayalamMeaning = document.getElementById("malayalam_meaning")
-const submitButton = document.getElementById("submit_btn")
-
 const editPopupForm = document.getElementById("edit_popup_form")
 const editPopupContainer = document.getElementById("edit_popup_container")
 const editMeaningIcon = document.getElementById("edit_meaing_icon")
 const editCloseIcon = document.getElementById("edit_close_icon")
+const submitButton = document.getElementById("edit_submit_btn")
+const englishWord = document.getElementById("edit_english_word")
+const partOfSpeech = document.getElementById("edit_part_of_speech")
+const malayalamMeaning = document.getElementById("edit_malayalam_meaning")
 
 let meaningId = ""
 let wordId = ""

@@ -13,7 +13,9 @@
               <i class="fa-solid fa-pen" id="edit_meaing_icon" onclick="handleEdit('<%= _id %>', '<%= JSON.stringify(data) %>')"  ></i>
           </div>
         </li>
+        <%#  render if edit icon clicked start %>
         <%- include('../popups/edit-word-meaning') %> 
+        <%#  render if edit icon clicked start %>
       <% }) %>
     </ol>
 </div>

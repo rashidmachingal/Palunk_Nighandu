@@ -10,7 +10,7 @@
     <!-- custom js -->
     <script src="/js/search/search.js" defer ></script>
     <script src="/js/utils/utils.js" defer ></script>
-    <script src="/js/word/add-new-meaning.js" defer></script>
+    <script src="/js/word/add-new-meaning.js" type="module" defer></script>
     <script src="/js/word/edit-word-meaning.js" defer></script>
     <%- include('../partials/header') %>
 </head>
@@ -34,7 +34,7 @@
              <%# render add new word btn if word found start %>
              <% if(status === true){ %>
                 <div class="result-add w100 mt-1" >
-                 <button id="new_meaning_btn" >പുതിയ അർഥം ചേർക്കുക</button>
+                 <button id="add_new_meaning_btn" >പുതിയ അർഥം ചേർക്കുക</button>
                 </div>
              <% } %>
              <%# render add new word btn if word found end %>
