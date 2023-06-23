@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register to Palunk Nighandu</title>
+    <meta name="description" content="Register page of Palunk Nighandu" />
+    <!-- custom css  -->
+    <!-- custom javascript -->
+    <!-- header imports -->
+    <%- include('../partials/header') %>
+</head>
+<body>
+
+    <!-- navbar -->
+    <%- include('../partials/navbar') %>
+    <!-- navbar -->
+
+    <div class="w100 item-center" >
+       <div class="main-box" >
+          <div class="title mt_1" >
+            <h2>അക്കൗണ്ട് ഉണ്ടാക്കുക</h2>
+          </div>
+
+          <form id="add_new_word_form" autoComplete="off" class="form mt-1" >
+            <div class="form-group" >
+              <label>താങ്കളുടെ നാമം</label>
+              <input id="name" type="text" placeholder="Enter Your Name" />
+              <span></span>
+          </div>
+            <div class="form-group" >
+                <label>ഇ-മെയിൽ വിലാസം</label>
+                <input id="email" type="email" placeholder="Enter Your Email" />
+                <span></span>
+            </div>
+            <div class="form-group" >
+                <label>രഹസ്യവാക്ക്</label>
+                <input id="password" type="password" placeholder="Enter Password" />
+                <span></span>
+            </div>
+            <div class="form-group" >
+              <button type="submit" id="submit_btn"  >അക്കൗണ്ട് ഉണ്ടാക്കുക</button>
+            </div>
+
+            <div class="form-group" >
+              <a href="/account/login">ലോഗിൻ ചെയ്യുക?</a>
+            </div>
+          </form>
+       </div>
+    </div>
+
+    <!-- footer  -->
+      <%- include('../partials/footer') %>
+    <!-- footer  -->
+
+</body>
+</html>

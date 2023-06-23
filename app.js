@@ -5,10 +5,14 @@ const mongoose = require("mongoose");
 
 // import routes
 const indexRoute = require("./app/routes/index");
+const adminRoute = require("./app/routes/admin");
+const userRoute = require("./app/routes/user");
 
 // middlewares
 app.use(express.json());
 app.use("/", indexRoute)
+app.use("/admin", adminRoute)
+app.use("/account", userRoute)
 
 // config
 dotenv.config()
@@ -21,7 +25,7 @@ app.use(express.static(__dirname + "/public"));
 
 // start the server + mongodb connection
 mongoose.connect(process.env.MONGO_URL).then(() => {
-    app.listen(process.env.PORT || 3000, () => {
+    app.listen(process.env.PORT || 3001, () => {
       console.log("server running & db connection succesful")
     });
 })
