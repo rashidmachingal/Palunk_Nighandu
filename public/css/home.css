@@ -27,14 +27,6 @@
   }
 }
 
-.notice-board{
-  width: 38rem;
-  padding: 10px;
-  background: #f1f9f7;
-  border-color: #e0f1e9;
-  color: #1d9d74;
-}
-
 @media (max-width: 416px) {
   .home-search {
     width: 93%;
