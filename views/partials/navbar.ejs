@@ -5,8 +5,33 @@
         <img src="/img/palunku-nighandu-logo.webp" alt="mallu nighandu logo" />
       </a>
     </div>
-    <div class="login item-center" >
+
+    <a href="/account/login" class="login item-center" >
       <i class="fa-regular fa-user"></i>
-      <a href="/account/login"><button >ലോഗിൻ</button></a>
+      <button >ലോഗിൻ</button>
+    </a>
+
+    <div class="account-menu item-center" >
+      <div class="item-center box" id="account_menu" >
+        <img src="/img/avatar.png" alt="">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </div>
+
+      <div class="dropdown" id="dropdown" >
+        <div>
+          <i class="fas fa-user"></i>
+          <h4>Dashboard</h4>
+        </div>
+        <div>
+          <i class="fa-solid fa-gear"></i>
+          <h4>Settings</h4>
+        </div>
+        <div onclick="handleLogout()" >
+          <i class="fas fa-sign-out-alt"></i>
+          <h4>Logout</h4>
+        </div>
+      </div>
+      <!-- <h4 id="display_name" ></h4> -->
     </div>
+
 </nav>

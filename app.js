@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cookieParser = require('cookie-parser');
 
 // import routes
 const indexRoute = require("./app/routes/index");
@@ -10,6 +11,7 @@ const userRoute = require("./app/routes/user");
 
 // middlewares
 app.use(express.json());
+app.use(cookieParser())
 app.use("/", indexRoute)
 app.use("/admin", adminRoute)
 app.use("/account", userRoute)

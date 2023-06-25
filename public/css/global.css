@@ -43,6 +43,14 @@ button{
   justify-content: center;
   align-items: center;
 }
+
+.error-message{
+  text-align: center;
+  padding: 10px;
+  color: #D8000C;
+  background-color: #FFBABA;
+  display: none;
+}
 /* common styles end */
 
 /* navbar stat */
@@ -70,11 +78,73 @@ button{
   background: whitesmoke;
   margin-right: 1.4rem;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.login i{
+  color: black;
 }
 
 .login  button{
   border: none;
   background: transparent;
+}
+
+.account-menu{
+  width: 8rem;
+  position: relative;
+  display: none;
+}
+
+.account-menu .box{
+  width: 5rem;
+  height: 2.5rem;
+  background: whitesmoke;
+  margin-right: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.account-menu img{
+  border-radius: 50%;
+}
+
+.account-menu .dropdown{
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  width: 180px;
+  background: white;
+  box-shadow: 0 0 3px 1px #00000011;
+  display: none;
+}
+
+.account-menu .dropdown div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.account-menu .dropdown div:hover{
+  background: whitesmoke;
+}
+
+.account-menu .dropdown h4{
+  font-weight: 400;
+  color: grey;
+  font-size: 15px;
+}
+
+.account-menu .dropdown i{
+  color: grey;
+  font-size: 14px;
 }
 
 @media (max-width:800px) {

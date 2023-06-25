@@ -1,5 +1,6 @@
 const express = require("express");
 const { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning } = require("../controllers/wordController");
+const { verifyToken } = require("../utils/authUtils");
 const router = express.Router();
 
 // serve home page

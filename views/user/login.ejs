@@ -8,6 +8,8 @@
     <meta name="description" content="Login page of Palunk Nighandu" />
     <!-- custom css  -->
     <!-- custom javascript -->
+    <script src="/js/user/auth.js" defer ></script>
+    <script src="/js/utils/utils.js" defer ></script>
     <!-- header imports -->
     <%- include('../partials/header') %>
 </head>
@@ -23,25 +25,33 @@
             <h2>ലോഗിൻ ചെയ്യുക</h2>
           </div>
 
-          <form id="add_new_word_form" autoComplete="off" class="form mt-1" >
+          <div id="user_name" style="display: none;" ></div>
+          <div id="register_form" style="display: none;" ></div>
+
+          <form id="login_form" autoComplete="on" class="form mt-1" >
             <div class="form-group" >
                 <label>ഇ-മെയിൽ വിലാസം</label>
-                <input id="email" type="text" placeholder="Enter Your Email" />
+                <input id="email" name="email" type="text" placeholder="Enter Your Email" />
                 <span></span>
             </div>
             <div class="form-group" >
                 <label>രഹസ്യവാക്ക്</label>
-                <input id="password" type="password" placeholder="Enter Password" />
+                <input id="password" name="password" type="password" placeholder="Enter Password" />
                 <span></span>
             </div>
             <div class="form-group" >
-              <button type="submit" id="submit_btn"  >പ്രവേശിക്കുക</button>
+              <button type="submit" id="auth_submit_btn"  >പ്രവേശിക്കുക</button>
             </div>
 
             <div class="form-group" >
               <a href="/account/register">പുതിയ അക്കൗണ്ട് ഉണ്ടാക്കുക?</a>
             </div>
           </form>
+
+            <%# show login fail message start %>
+            <div class="auth-error-message mt-1 error-message" ></div>
+            <%# show login fail message end %>
+
        </div>
     </div>
 

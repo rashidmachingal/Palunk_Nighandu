@@ -8,6 +8,8 @@
     <meta name="description" content="Register page of Palunk Nighandu" />
     <!-- custom css  -->
     <!-- custom javascript -->
+    <script src="/js/user/auth.js" defer ></script>
+    <script src="/js/utils/utils.js" defer ></script>
     <!-- header imports -->
     <%- include('../partials/header') %>
 </head>
@@ -22,31 +24,36 @@
           <div class="title mt_1" >
             <h2>അക്കൗണ്ട് ഉണ്ടാക്കുക</h2>
           </div>
-
-          <form id="add_new_word_form" autoComplete="off" class="form mt-1" >
+          <div style="display: none;" id="login_form" ></div>
+          <form id="register_form" autoComplete="on" class="form mt-1" >
             <div class="form-group" >
               <label>താങ്കളുടെ നാമം</label>
-              <input id="name" type="text" placeholder="Enter Your Name" />
+              <input  id="user_name" name="user_name" type="text" placeholder="Enter Your Name" />
               <span></span>
           </div>
             <div class="form-group" >
                 <label>ഇ-മെയിൽ വിലാസം</label>
-                <input id="email" type="email" placeholder="Enter Your Email" />
+                <input id="email" name="email" type="email" placeholder="Enter Your Email" />
                 <span></span>
             </div>
             <div class="form-group" >
                 <label>രഹസ്യവാക്ക്</label>
-                <input id="password" type="password" placeholder="Enter Password" />
+                <input id="password" name="password" type="password" placeholder="Enter Password" />
                 <span></span>
             </div>
             <div class="form-group" >
-              <button type="submit" id="submit_btn"  >അക്കൗണ്ട് ഉണ്ടാക്കുക</button>
+              <button type="submit" id="auth_submit_btn"  >അക്കൗണ്ട് ഉണ്ടാക്കുക</button>
             </div>
 
             <div class="form-group" >
               <a href="/account/login">ലോഗിൻ ചെയ്യുക?</a>
             </div>
           </form>
+
+          <%# show register fail message start %>
+          <div class="auth_submit_btn mt-1" ></div>
+          <%# show register fail message end %>
+
        </div>
     </div>
 
