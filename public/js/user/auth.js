@@ -77,7 +77,7 @@ loginForm.addEventListener("submit", (event) => {
         // and redirect to user dashbaord
         if(response.status === true) {
             localStorage.setItem("user_name", response.user_name)
-            location.replace("/")
+            location.replace("/account/dashboard")
         }
     })
 
