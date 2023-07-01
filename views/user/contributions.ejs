@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributions - Palunk Nighandu</title>
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- header imports -->
+    <%- include('../partials/header') %>
+</head>
+<body>
+
+    <!-- navbar -->
+      <%- include('../partials/navbar') %>
+    <!-- navbar -->
+
+    <div class="w100 item-center" >
+        <div class="main-box" >
+          <!-- topbar -->
+            <%- include('./topbar', {active: "contributions"}) %>
+          <!-- topbar -->
+          <div class="item-left w100" >
+            <p class="mt-1 welcome" >താങ്കളുടെ സംഭാവനകൾ</p>
+            <div class="pending mt-1" >
+                <p><i class="fa-sharp fa-solid fa-circle dot"></i> നിഘണ്ടുവിൽ നിലവിൽ ഉള്ള <a href="/" class="eng" >something</a> എന്ന വാക്കിലേക്ക് <span class="mal" >എന്തോ</span> എന്ന അർഥം ചേർത്തു</p>
+                <p><i class="fa-sharp fa-solid fa-circle dot"></i> നിഘണ്ടുവിൽ നിലവിൽ ഉള്ള <a href="/" class="eng" >nothing</a> എന്ന വാക്കിലെ <span  class="rved" >ഒന്നും</span> എന്ന അർഥം മാറ്റി <span class="mal" >ഇല്ല</span> എന്നാക്കി</p>
+                <p>
+                <i class="fa-sharp fa-solid fa-circle dot"></i>
+                 നിഘണ്ടുവിൽ <a href="/" class="eng" >something</a> എന്ന വാക്ക് പുതുതായി ചേർത്തു
+                 <ul class="list-items" >
+                  <li>ഏതോ ഒരു കാര്യം</li>
+                  <li>ഒരളവില്‍</li>
+                  <li>ഒരംശം</li>
+                  <li>ഒരു കണക്കില്‍: noun</li>
+                 </ul>
+                </p>
+                <p><i class="fa-sharp fa-solid fa-circle dot"></i> നിഘണ്ടുവിൽ നിലവിൽ ഉള്ള <a href="/" class="eng" >something</a> എന്ന വാക്കിലേക്ക് <span class="mal" >എന്തോ</span> എന്ന അർഥം ചേർത്തു</p>
+            </div>
+          </div>
+        </div>
+     </div>
+ 
+     <!-- footer  -->
+       <%- include('../partials/footer') %>
+     <!-- footer  -->
+</body>
+</html>

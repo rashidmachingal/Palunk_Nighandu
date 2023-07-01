@@ -49,4 +49,20 @@ router.post("/logout" , (req, res) => {
     res.redirect("/")
 })
 
+// serve dashboard page 
+router.get("/dashboard" , (req, res) => {
+    res.render("user/dashboard")
+})
+
+// serve pending page
+router.get("/pending" , (req, res) => {
+    res.render("user/pending")
+})
+
+// serve contributions page
+router.get("/contributions" , (req, res) => {
+    res.render("user/contributions")
+})
+
+
 module.exports = router

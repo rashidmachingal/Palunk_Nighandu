@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Palunk Nighandu</title>
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- header imports -->
+    <%- include('../partials/header') %>
+</head>
+<body>
+
+    <!-- navbar -->
+      <%- include('../partials/navbar') %>
+    <!-- navbar -->
+
+    <div class="w100 item-center" >
+        <div class="main-box" >
+          <!-- topbar -->
+            <%- include('./topbar', {active: "dashboard"}) %>
+          <!-- topbar -->
+          <div class="item-left w100" >
+            <p class="mt-1 welcome" >ഹായ് Rashid, പളുങ്ക് നിഘണ്ടുവിലേക്ക് സ്വാഗതം!</p>
+            <div class="mt-1" >
+              <a href="/add-new-word">
+                <button>പുതിയ ഒരു പദം ചേര്‍ക്കുക</button>
+              </a>
+            </div>
+            <div class="mt-1" >
+              <a href="/">
+                <button>സെർച്ച് ചെയ്യുക</button>
+              </a>
+            </div>
+          </div>
+        </div>
+     </div>
+ 
+     <!-- footer  -->
+       <%- include('../partials/footer') %>
+     <!-- footer  -->
+</body>
+</html>

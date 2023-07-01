@@ -44,6 +44,12 @@ button{
   align-items: center;
 }
 
+.item-left{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .error-message{
   text-align: center;
   padding: 10px;
@@ -122,7 +128,7 @@ button{
   display: none;
 }
 
-.account-menu .dropdown div{
+.account-menu .dropdown div, .account-menu .dropdown a{
   width: 100%;
   display: flex;
   align-items: center;
@@ -130,9 +136,10 @@ button{
   padding: 10px;
   gap: 10px;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.account-menu .dropdown div:hover{
+.account-menu .dropdown div:hover, .account-menu .dropdown a:hover{
   background: whitesmoke;
 }
 
