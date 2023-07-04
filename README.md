@@ -1,9 +1,9 @@
-# Palunk Nighandu
+# പളുങ്ക് നിഘണ്ടു
 പളുങ്ക് നിഘണ്ടു ഒരു ഇംഗ്ലീഷ്-മലയാളം നിഘണ്ടു വെബ് ആപ്ലിക്കേഷനാണ്. പളുങ്ക് നിഘണ്ടു വാക്കുകളുടെ അർത്ഥം പുതുക്കാനും പുതിയ വാക്കുകൾ ചേർക്കാനും ഉപയോക്താക്കളെ അനുവദിക്കുന്നു.
 
 Palunk Nighandu is an English-to-Malayalam dictionary web application that empowers users to contribute by updating word meanings and adding new entries.
 
-## Features
+## ഫീച്ചറുകൾ
 - Search words
 - Search suggetions
 - User register and login
