@@ -20,7 +20,7 @@ const verifyToken = (req, res, next) => {
             }
         });
     }else{
-        res.json({status: false, message:"auth failed"})
+        console.log("@auth_failed")
     }
 
 }
