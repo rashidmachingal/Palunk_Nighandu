@@ -16,7 +16,6 @@ const verifyToken = (req, res, next) => {
                 console.log("@auth_failed")
             } else {
                 console.log("@auth_success")
-                res.json({decodedToken})
                 next()
             }
         });
