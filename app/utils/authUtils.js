@@ -13,13 +13,15 @@ const verifyToken = (req, res, next) => {
     if(token){
         jwt.verify(token, process.env.PASS_SEC, (error, decodedToken) => {
             if (error) {
-                console.log("@failed")
-                next()
+                console.log("@auth_failed")
             } else {
-                console.log("@success")
+                console.log("@auth_success")
+                res.json({decodedToken})
                 next()
             }
         });
+    }else{
+        res.json({status: false, message:"auth failed"})
     }
 
 }

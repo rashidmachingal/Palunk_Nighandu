@@ -6,16 +6,16 @@ const dropdown = document.getElementById("dropdown")
 
 // if user loggedIn 
 // show account menu & hide notice in add new word page
-function showAccountMenu() {
+// 
+function ifUserLoggedIn() {
     if(document.cookie !== ""){
         logginButton.style.display = "none"
         accountMenu.style.display = "flex"
-        noticeBoard.style.display = "none"
+        if(noticeBoard) noticeBoard.style.display = "none"
     }
 }
 
-
-showAccountMenu()
+ifUserLoggedIn()
 
 // toggle account menu dropdown
 window.addEventListener('click', (event) => {
