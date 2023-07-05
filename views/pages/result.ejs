@@ -35,12 +35,24 @@
 
              <%# render add new word btn if word found start %>
              <% if(status === true){ %>
-                <div class="result-add w100 mt-1" >
+                <div class="pl-1 w100 mt-1" >
                  <button id="add_new_meaning_btn" >പുതിയ അർഥം ചേർക്കുക</button>
                 </div>
              <% } %>
              <%# render add new word btn if word found end %>
-
+             
+             <%# render contributers list start %>
+             <div class="w100 mt-1 pl-1" >
+              <p class="font-bold" >ഈ പദത്തിലേക്ക് സംഭാവന ചെയ്തവർ ✅</p>
+              <div class="w100 contributers mt-1" >
+                <a class="contributer" href="http://instagram.com/rashid.machingal" >
+                  <img src="/img/avatar.png" alt="profile">
+                  <p>Rashid</p>
+                </a>
+              </div>
+             </div>
+             <%# render contributers list end %>
+             
              <%#  render error message if word not found start %>
              <% if (status === false) { %>
                 <%- include('../partials/notfound') %>
