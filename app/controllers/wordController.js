@@ -10,6 +10,8 @@ const getWordMeaning = async (english_word) => {
   
       // return error messsage if wor not found
       if (!foundedWord || !foundedWord.status) return { status: false, english_word }
+
+      console.log(foundedWord)
   
       // return word meanings
       return foundedWord
@@ -57,7 +59,12 @@ const addMeaningToWord = async (req, res, userInfo) => {
     // add the new meaning to the word's meanings array
     foundedWord.meanings.push(req.body);
     // if user logged in set contributer
-    if(userInfo.status === true) foundedWord.contributers.push(userInfo.data.id)
+    if (userInfo.status === true) {
+      // add this user to contributers list if not already contributer
+      if (!foundedWord.contributers.includes(userInfo.data.id)) {
+        foundedWord.contributers.push(userInfo.data.id);
+      }
+    }    
 
     // save the updated word to the database
     await foundedWord.save();
