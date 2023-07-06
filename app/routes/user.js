@@ -1,6 +1,6 @@
 const express = require("express");
 const { registerUser, loginUser } = require("../controllers/authController");
-const { verifyToken } = require("../utils/authUtils");
+const { authVerfication } = require("../utils/authUtils");
 const router = express.Router();
 
 // serve register page
@@ -51,7 +51,7 @@ router.post("/logout" , (req, res) => {
 })
 
 // serve dashboard page 
-router.get("/dashboard", verifyToken, (req, res) => {
+router.get("/dashboard", authVerfication, (req, res) => {
     res.render("user/dashboard");
 });
 

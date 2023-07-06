@@ -1,4 +1,6 @@
+const Change = require("../models/Change");
 const Word = require("../models/Word");
+const User = require("../models/User");
 
 // get single word meaning
 const getWordMeaning = async (english_word) => {
@@ -41,7 +43,7 @@ const addNewWord = async (req, res) => {
 };
 
 // add a new meaning to an existing word
-const addMeaningToWord = async (req, res) => {
+const addMeaningToWord = async (req, res, userInfo) => {
   try {
     const { english_word } = req.params;
 
@@ -54,11 +56,40 @@ const addMeaningToWord = async (req, res) => {
 
     // add the new meaning to the word's meanings array
     foundedWord.meanings.push(req.body);
+    // if user logged in set contributer
+    if(userInfo.status === true) foundedWord.contributers.push(userInfo.data.id)
 
     // save the updated word to the database
     await foundedWord.save();
-
     res.status(200).json({ message: 'meaning added successfully' });
+
+    // for admin
+    // add the new meaning to changes
+    const changeData = new Change({
+      main_word: english_word,
+      type: "new_meaning",
+      key: english_word,
+      changed_data: req.body,
+      user_logged: userInfo.status,
+      user_id: userInfo?.data?.id
+    })
+
+    const changedData =  await changeData.save();
+
+    // for user
+    // add to newMeaning contribution details
+    const contributionData = {
+       main_word: english_word,
+       type: "new_meaning",
+       changed_data: req.body,
+    }
+
+    if(userInfo.status === true){
+        const user = await User.findOne({_id:userInfo.data.id})
+        user.newMeanings.push(contributionData)
+        const updatedData = await user.save()
+    }
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'error occurred while adding the meaning' });

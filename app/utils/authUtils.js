@@ -6,8 +6,8 @@ const createJwtToken = (user_name, id) => {
     return token
 }
 
-// verify token
-const verifyToken = (req, res, next) => {
+// verify user token & if user not logged in redirect to login page
+const authVerfication = (req, res, next) => {
     const token = req.cookies.Token
 
     if(token){
@@ -15,16 +15,31 @@ const verifyToken = (req, res, next) => {
             if (error) {
                 res.redirect("/account/login")
             } else {
-                console.log("@auth_success")
                 next()
             }
         });
     }else{
         res.redirect("/account/login")
-        console.log("@auth_failed")
     }
 
 }
 
+// verify user token & and sent user logged or not info with user data
+const getUser = async (req) => {
+    const token = req.cookies.Token;
+  
+    if (token) {
+      try {
+        const decodedToken = await jwt.verify(token, process.env.PASS_SEC);
+        return { status: true, data:decodedToken };
+      } catch (error) {
+        return { status: false };
+      }
+    } else {
+      return { status: false };
+    }
+  };
+  
 
-module.exports = { createJwtToken, verifyToken }
+
+module.exports = { createJwtToken, authVerfication, getUser }

@@ -1,6 +1,6 @@
 const express = require("express");
 const { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning } = require("../controllers/wordController");
-const { verifyToken } = require("../utils/authUtils");
+const { authVerfication, getUser } = require("../utils/authUtils");
 const router = express.Router();
 
 // serve home page
@@ -25,12 +25,17 @@ router.post("/add-new-word", (req, res) => {
     addNewWord(req, res)
 })
 
-// add a new meaning to and existing word
-router.post("/add-new-meaning/:english_word" , (req, res) => {
-    addMeaningToWord(req, res)
+// add a new meaning to and existing word api
+router.post("/add-new-meaning/:english_word" , async (req, res) => {
+    try{
+        const userInfo = await getUser(req)
+        addMeaningToWord(req, res, userInfo)
+    }catch (userInfo) {
+        addMeaningToWord(req, res, userInfo)
+    }
 })
 
-// edit word meaning 
+// edit word meaning api
 router.post("/edit-word-meaning/:wordId", (req, res) => {
     editWordMeaning(req, res)
 })
