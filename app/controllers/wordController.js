@@ -11,7 +11,9 @@ const getWordMeaning = async (english_word) => {
       // return error messsage if wor not found
       if (!foundedWord || !foundedWord.status) return { status: false, english_word }
 
-      console.log(foundedWord)
+      // find contributers using id
+      const contributers = await User.find({ _id: { $in: foundedWord.contributers } }).select("-_id user_name");
+      foundedWord.contributers = contributers
   
       // return word meanings
       return foundedWord
