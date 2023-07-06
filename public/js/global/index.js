@@ -1,6 +1,6 @@
 const accountMenu = document.querySelector(".account-menu")
 const logginButton = document.querySelector(".login")
-const noticeBoard = document.querySelector(".notice-board")
+const noticeBoard = document.querySelector(".alert-in-add")
 const diplayName = document.getElementById("display_name")
 const dropdown = document.getElementById("dropdown")
 
