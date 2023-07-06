@@ -13,8 +13,8 @@ const getWordMeaning = async (english_word) => {
 
       // find contributers using id
       const contributers = await User.find({ _id: { $in: foundedWord.contributers } }).select("-_id user_name");
-      foundedWord.contributers = contributers
-  
+      foundedWord.contributersList = contributers;
+
       // return word meanings
       return foundedWord
     } catch (error) {

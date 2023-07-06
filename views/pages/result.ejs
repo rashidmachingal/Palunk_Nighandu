@@ -41,25 +41,32 @@
              <% } %>
              <%# render add new word btn if word found end %>
              
-             <%# render contributers list start %>
-             <div class="w100 mt-1 pl-1 created-by" >
-              <p class="font-bold" >ഈ പദം നിഘണ്ടുവിൽ ചേർത്തത് 👍</p>
-              <a class="contributer" href="http://instagram.com/rashid.machingal" >
-                <img src="/img/avatar.png" alt="profile">
-                <p>Rashid</p>
-              </a>
-             </div>
+             <%# render contributers list if word found start %>
+             <% if(status === true){ %>
 
-             <div class="w100 pl-1" style="margin-top: 6px;" >
-              <p class="font-bold" >ഈ പദത്തിലേക്ക് സംഭാവന ചെയ്തവർ ✅</p>
-              <div class="w100 contributers" >
+              <div class="w100 mt-1 pl-1 created-by" >
+                <p class="font-bold" >ഈ പദം നിഘണ്ടുവിൽ ചേർത്തത് 👍</p>
                 <a class="contributer" href="http://instagram.com/rashid.machingal" >
                   <img src="/img/avatar.png" alt="profile">
                   <p>Rashid</p>
                 </a>
-              </div>
-             </div>
-             <%# render contributers list end %>
+               </div>
+
+              <div class="w100 pl-1" style="margin-top: 6px;" >
+                <% if (contributersList.length !== 0) { %>
+                  <p class="font-bold" >ഈ പദത്തിലേക്ക് സംഭാവന ചെയ്തവർ ✅</p>
+                <% } %>
+                <div class="w100 contributers" >
+                 <% contributersList.forEach((element) => { %>
+                  <a class="contributer" href="http://instagram.com/rashid.machingal" >
+                    <img src="/img/avatar.png" alt="profile">
+                    <p><%= element.user_name %></p>
+                  </a>
+                 <% }) %>
+                </div>
+               </div>
+             <% } %>
+             <%# render contributers list if word found end %>
              
              <%#  render error message if word not found start %>
              <% if (status === false) { %>
