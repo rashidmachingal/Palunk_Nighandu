@@ -389,6 +389,10 @@ button{
   background: white;
 }
 
+.form-group input[type="file"]{
+  padding-top: 10px;
+}
+
 .form-group textarea{
   resize: vertical;
   width: 100%;
@@ -457,3 +461,11 @@ button{
   }
 }
 /* notice board end */
+
+/* register profile preview start */
+.profile-preivew img{
+  width: 100px; 
+  height: 100px;
+  border-radius: 50%;
+}
+/* register profile preview end */
