@@ -1,9 +1,9 @@
 const express = require("express");
+const { adminVerfication } = require("../utils/authUtils");
 const router = express.Router();
 
-// serve login page
-router.get("/login" , (req, res) => {
-    res.render("admin/login")
+router.get("/dashboard", adminVerfication, (req, res) => {
+    res.render("admin/new-meanings")
 })
 
 module.exports = router

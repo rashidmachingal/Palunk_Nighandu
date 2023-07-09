@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 // create jwt token
-const createJwtToken = (user_name, id) => {
-    const token = jwt.sign({user_name, id}, process.env.JWT_SEC);
+const createJwtToken = (user_name, id, isAdmin) => {
+    const token = jwt.sign({user_name, id, isAdmin}, process.env.JWT_SEC);
     return token
 }
 
@@ -24,6 +24,28 @@ const authVerfication = (req, res, next) => {
 
 }
 
+// verify admin 
+const adminVerfication = (req, res, next) => {
+  const token = req.cookies.Token
+
+  if(token){
+      jwt.verify(token, process.env.JWT_SEC, (error, decodedToken) => {
+          if (error) {
+              res.redirect("/account/login")
+          } else {
+            if(decodedToken.isAdmin){
+              next()
+            }else{
+              res.redirect("/account/login")
+            }
+          }
+      });
+  }else{
+      res.redirect("/account/login")
+  }
+
+}
+
 // verify user token & and sent user logged or not info with user data
 const getUser = async (req) => {
     const token = req.cookies.Token;
@@ -42,4 +64,4 @@ const getUser = async (req) => {
   
 
 
-module.exports = { createJwtToken, authVerfication, getUser }
+module.exports = { createJwtToken, authVerfication, getUser, adminVerfication }

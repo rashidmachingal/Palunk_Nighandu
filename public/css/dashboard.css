@@ -36,6 +36,7 @@
 /* pending start */
 .pending{
     display: flex;
+    justify-content: center;
     flex-direction: column;
     gap: 10px;
 }
@@ -47,11 +48,12 @@
 .eng{
     font-weight: 800;
     color: #3767c0;
+    text-decoration: none;
 }
 
 .mal{
     font-weight: 800;
-    text-decoration: underline wavy;
+    /* text-decoration: underline wavy; */
     color: green;
 }
 
@@ -74,3 +76,30 @@
     font-size: 6px;
 }
 /* pending end */
+
+/* admin start */
+.adm-new{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.adm-new p{
+    font-size: 14px;
+}
+
+.by-user{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+.by-user img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+/* admin end */

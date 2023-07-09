@@ -28,10 +28,10 @@ const registerUser = async (req, res) => {
     const savedUser = await newUser.save();
 
     // create jwt token
-    const token = createJwtToken(user_name, savedUser._id)
+    const token = createJwtToken(user_name, savedUser._id, savedUser.admin)
 
     // send jwt token and register status message
-    return {profile_picture: savedUser.profile_picture, token, status: true}
+    return {profile_picture: savedUser.profile_picture, token, status: true, admin: savedUser.admin}
     
   } catch (error) {
     console.log("@error",error)
@@ -60,10 +60,10 @@ const loginUser = async (req, res) => {
       }
   
     // create jwt token
-    const token = createJwtToken(user.user_name, user._id)
+    const token = createJwtToken(user.user_name, user._id, user.admin)
 
     // send jwt token and login status message
-    return {profile_picture: user.profile_picture ,token, status: true}
+    return {profile_picture: user.profile_picture ,token, status: true, admin: user.admin}
 
     } catch (error) {
         console.log("@error",error)

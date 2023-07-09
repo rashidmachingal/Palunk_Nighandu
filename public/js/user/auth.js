@@ -90,11 +90,19 @@ loginForm.addEventListener("submit", (event) => {
              // change button text to default
             authSubmitBtn.innerHTML = "പ്രവേശിക്കുക"
         }
+
         // if register success set user_name in localStorage 
         // and redirect to user dashbaord
         if(response.status === true) {
+            // if user is admin redirect to admin dashboard
+            if(response.admin === true) {
+                location.replace("/admin/dashboard")
+            }else{
+                location.replace("/account/dashboard")
+            }
+
+            // store profile picture on local storage
             localStorage.setItem("profile_picture", response.profile_picture)
-            location.replace("/account/dashboard")
         }
     })
 
