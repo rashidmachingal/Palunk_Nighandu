@@ -3,20 +3,35 @@ const loginForm = document.getElementById("login_form")
 const userName = document.getElementById("user_name")
 const email = document.getElementById("email")
 const password = document.getElementById("password")
+const profilePicture = document.getElementById("profile_picture")
+const profilePreivew = document.getElementById("profile_preivew")
 const authSubmitBtn = document.getElementById("auth_submit_btn")
 const authErrorMessage = document.querySelector(".auth-error-message")
 
+
+// profile picture preview
+if(profilePicture){
+    profilePicture.addEventListener("change", (event) => {
+        profilePreivew.src = window.URL.createObjectURL(event.target.files[0])
+        profilePreivew.style.display = "initial"
+    })
+}
+
 // user register handle 
-registerForm.addEventListener("submit", (event) => {
+registerForm.addEventListener("submit", async (event) => {
     event.preventDefault()
     // basic form validation
     const errors =  formValidation([userName, email, password])
     if(errors.length !== 0) return
-    
+
+    // upload profile image to firebase storage and get image
+    const profile_picture = await profilePicutureUpload()
+
     const registerData = {
         user_name: userName.value,
         email:email.value,
-        password:password.value
+        password:password.value,
+        profile_picture: profile_picture
     }
 
     // change button text to loading
@@ -37,7 +52,7 @@ registerForm.addEventListener("submit", (event) => {
         // if register success set user_name in localStorage 
         // and redirect to user dashbaord
         if(response.status === true) {
-            localStorage.setItem("user_name", response.user_name)
+            localStorage.setItem("profile_picture", response.profile_picture)
             location.replace("/")
         }
     })
@@ -76,7 +91,7 @@ loginForm.addEventListener("submit", (event) => {
         // if register success set user_name in localStorage 
         // and redirect to user dashbaord
         if(response.status === true) {
-            localStorage.setItem("user_name", response.user_name)
+            localStorage.setItem("profile_picture", response.profile_picture)
             location.replace("/account/dashboard")
         }
     })

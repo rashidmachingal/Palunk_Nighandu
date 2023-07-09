@@ -8,8 +8,14 @@
     <meta name="description" content="Register page of Palunk Nighandu" />
     <!-- custom css  -->
     <!-- custom javascript -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js" defer ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js" defer ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js" defer ></script>
     <script src="/js/user/auth.js" defer ></script>
+    <script src="/js/user/firebase-config.js" defer ></script>
+    <script src="/js/user/image-upload.js" defer ></script>
     <script src="/js/utils/utils.js" defer ></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.977.0.min.js"></script>
     <!-- header imports -->
     <%- include('../partials/header') %>
 </head>
@@ -43,16 +49,16 @@
             </div>
             <div class="form-group" >
                 <label>പ്രൊഫൈൽ ചിത്രം</label>
-                <input id="profile" name="password" type="file" />
+                <input id="profile_picture" name="profile_picture" type="file" />
                 <span></span>
             </div>
 
             <div class="profile-preivew" >
-              <img src="https://pbs.twimg.com/profile_images/1150714793390563330/7eGHdXob_400x400.jpg" alt="">
+              <img id="profile_preivew" src="" >
             </div>
 
             <div class="form-group" >
-              <button type="submit" id="auth_submit_btn"  >അക്കൗണ്ട് ഉണ്ടാക്കുക</button>
+              <button type="submit" id="auth_submit_btn" accept="image/*"  >അക്കൗണ്ട് ഉണ്ടാക്കുക</button>
             </div>
 
             <div class="form-group" >

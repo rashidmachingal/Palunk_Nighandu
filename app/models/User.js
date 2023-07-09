@@ -6,6 +6,8 @@ const UserSchema = new mongoose.Schema(
     email: { type: String },
     password: {type: String},
     admin: {type: Boolean, default: false},
+    profile_picture: {type: String},
+    social_media: {type: String},
     edits: {type: Array},
     newMeanings: {type: Array},
     newWords: {type: Array}
