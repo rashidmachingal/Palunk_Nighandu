@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 // create jwt token
 const createJwtToken = (user_name, id) => {
-    const token = jwt.sign({user_name, id}, process.env.PASS_SEC);
+    const token = jwt.sign({user_name, id}, process.env.JWT_SEC);
     return token
 }
 
@@ -11,7 +11,7 @@ const authVerfication = (req, res, next) => {
     const token = req.cookies.Token
 
     if(token){
-        jwt.verify(token, process.env.PASS_SEC, (error, decodedToken) => {
+        jwt.verify(token, process.env.JWT_SEC, (error, decodedToken) => {
             if (error) {
                 res.redirect("/account/login")
             } else {
@@ -30,7 +30,7 @@ const getUser = async (req) => {
   
     if (token) {
       try {
-        const decodedToken = await jwt.verify(token, process.env.PASS_SEC);
+        const decodedToken = await jwt.verify(token, process.env.JWT_SEC);
         return { status: true, data:decodedToken };
       } catch (error) {
         return { status: false };

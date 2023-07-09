@@ -1,7 +1,7 @@
 const express = require("express");
+const router = express.Router();
 const { registerUser, loginUser } = require("../controllers/authController");
 const { authVerfication } = require("../utils/authUtils");
-const router = express.Router();
 
 // serve register page
 router.get("/register" , (req, res) => {

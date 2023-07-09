@@ -1,13 +1,19 @@
+// firebase configuration
+async function firebaseConfiguration() {
+  res = await fetch("/firebase-config")
+  const firebaseConfig = await res.json()
+  firebase.initializeApp(firebaseConfig);  
+}
+
+firebaseConfiguration()
+
 // function for upload user profile picture to firebase storage
 function profilePicutureUpload() {
     return new Promise((resolve, reject) => {
       const file = profilePicture.files[0]; // get the first selected file
   
       // if user has not selected an image, return default URL
-      if (file === undefined) {
-        resolve("/img/avatar.png");
-        return;
-      }
+      if (file === undefined) return resolve("/img/avatar.png") 
   
       // create a storage reference to the Firebase Storage bucket
       const storageRef = firebase.storage().ref();
@@ -27,6 +33,7 @@ function profilePicutureUpload() {
         },
         (error) => {
           // handle any errors during the upload
+          console.log(error,"@error")
           reject("/img/avatar.png");
         },
         () => {

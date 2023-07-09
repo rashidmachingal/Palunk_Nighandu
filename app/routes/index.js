@@ -40,4 +40,20 @@ router.post("/edit-word-meaning/:wordId", (req, res) => {
     editWordMeaning(req, res)
 })
 
+// sent firebase config keys
+router.get("/firebase-config", (req, res) => {
+    
+    const firebaseConfig = {
+        apiKey: process.env.apiKey,
+        authDomain: process.env.apiKey,
+        projectId: process.env.projectId,
+        storageBucket: process.env.storageBucket,
+        messagingSenderId: process.env.messagingSenderId,
+        appId: process.env.appId,
+        measurementId: process.env.measurementId
+    }
+
+    res.json(firebaseConfig)
+})
+
 module.exports = router
