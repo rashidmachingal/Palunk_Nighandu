@@ -5,7 +5,7 @@ const { createJwtToken } = require("../utils/authUtils");
 // register a new user
 const registerUser = async (req, res) => {
     // data from client
-    const { user_name, email, password, profile_picture } = req.body;
+    const { user_name, email, password, profile_picture, social_media } = req.body;
 
   try {
     // sent message if user already registered with email
@@ -20,7 +20,8 @@ const registerUser = async (req, res) => {
         user_name,
         email,
         password: hashedPassword,
-        profile_picture
+        profile_picture,
+        social_media: social_media
       });
 
     // Save the user to the database

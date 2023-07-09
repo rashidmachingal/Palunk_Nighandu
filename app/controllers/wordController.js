@@ -12,7 +12,7 @@ const getWordMeaning = async (english_word) => {
       if (!foundedWord || !foundedWord.status) return { status: false, english_word }
 
       // find contributers using id
-      const contributers = await User.find({ _id: { $in: foundedWord.contributers } }).select("-_id user_name profile_picture");
+      const contributers = await User.find({ _id: { $in: foundedWord.contributers } }).select("-_id user_name profile_picture social_media");
       foundedWord.contributersList = contributers;
 
       // return word meanings

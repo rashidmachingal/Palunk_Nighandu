@@ -58,7 +58,7 @@
                 <% } %>
                 <div class="w100 contributers" >
                  <% contributersList.forEach((element) => { %>
-                  <a class="contributer" href="http://instagram.com/rashid.machingal" >
+                  <a class="contributer" href="<%= element.social_media %>" >
                     <img src="<%= element.profile_picture %>" alt="profile">
                     <p><%= element.user_name %></p>
                   </a>

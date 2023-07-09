@@ -3,6 +3,7 @@ const loginForm = document.getElementById("login_form")
 const userName = document.getElementById("user_name")
 const email = document.getElementById("email")
 const password = document.getElementById("password")
+const socialMedia = document.getElementById("social_media")
 const profilePicture = document.getElementById("profile_picture")
 const profilePreivew = document.getElementById("profile_preivew")
 const authSubmitBtn = document.getElementById("auth_submit_btn")
@@ -24,6 +25,9 @@ registerForm.addEventListener("submit", async (event) => {
     const errors =  formValidation([userName, email, password])
     if(errors.length !== 0) return
 
+    // change button text to loading
+    authSubmitBtn.innerHTML = "loading..."
+
     // upload profile image to firebase storage and get image
     const profile_picture = await profilePicutureUpload()
 
@@ -31,11 +35,9 @@ registerForm.addEventListener("submit", async (event) => {
         user_name: userName.value,
         email:email.value,
         password:password.value,
-        profile_picture: profile_picture
+        profile_picture: profile_picture,
+        social_media: socialMedia.value
     }
-
-    // change button text to loading
-    authSubmitBtn.innerHTML = "loading..."
 
     // user register - api call
     options_post.body = JSON.stringify(registerData)
