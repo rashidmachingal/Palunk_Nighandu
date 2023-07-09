@@ -23,16 +23,45 @@
           <div class="item-left w100" >
             <p class="mt-1 welcome" >നിലവിൽ ഉള്ള ഇംഗ്ലീഷ് വാക്കിലേക്ക് പുതിയ അർഥങ്ങൾ ചേർത്ത വിവരങ്ങൾ</p>
             <div class="adm-new mt-1" >
+
+              <% newMeaningsData.reverse().forEach((element) => { %>
                 <p>
                   <i class="fa-solid fa-arrow-right"></i> 
-                  <a href="/" class="eng" >something</a> എന്ന വാക്കിലേക്ക് 
-                  <span class="mal" >എന്തോ</span> എന്ന അർഥം ചേർത്തു
-                  <span class="by-user" >
+                  <a href="/" class="eng" ><%= element.main_word %></a> എന്ന വാക്കിലേക്ക് 
+                  <span class="mal" >
+                    <%= element.changed_data[0].definition %> 
+                   <% if (element.changed_data[0].part_of_speech !== "-") { %>
+                    (<%= element.changed_data[0].part_of_speech %>)
+                   <% } %>
+                  </span>
+                     എന്ന അർഥം ചേർത്തു
+                  
+                 <div class="amd-hold" >
+                 <% if (element.user_logged) { %>
+                  <a href="" class="by-user" >
+                    by
+                    <img src="<%= element.user_details[0].profile_picture %>" alt="">
+                    <%= element.user_details[0].user_name %>
+                  </a>
+                 <% } %>
+
+                 <% if (element.user_logged === false) { %>
+                  <a href="" class="by-user" >
                     by
                     <img src="/img/avatar.png" alt="">
-                    Rashid
-                  </span>
+                    Anonymous User
+                  </a>
+                 <% } %>
+                  
+                  <div>
+                    <button>ok</button>
+                    <button>reject</button>
+                  </div>
+                 </div>
+
                 </p>
+              <% }) %>
+
             </div>
           </div>
         </div>

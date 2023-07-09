@@ -8,6 +8,7 @@ const ChangeSchema = new mongoose.Schema(
     changed_data: {type: Array},
     user_logged: {type: Boolean},
     user_id: {type: String},
+    user_details: {type: Array}
   },
   { timestamps: true }
 );
