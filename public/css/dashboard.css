@@ -110,4 +110,22 @@
     align-items: center;
     gap: 1rem;
 }
+
+.ok{
+    border: none;
+    background: #e6faf5;
+    border-color: #e0f1e9;
+    color: #1d9d74;
+    width: 3rem;
+    border-radius: 5px;
+}
+
+.reject{
+    border: none;
+    background: #fde6e6;
+    border-color: #e0f1e9;
+    color: #b93939;
+    width: 3rem;
+    border-radius: 5px;
+}
 /* admin end */
