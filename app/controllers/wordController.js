@@ -1,6 +1,7 @@
 const Change = require("../models/Change");
 const Word = require("../models/Word");
 const User = require("../models/User");
+const { default: mongoose } = require("mongoose");
 
 // get single word meaning
 const getWordMeaning = async (english_word) => {
@@ -69,7 +70,7 @@ const addMeaningToWord = async (req, res, userInfo) => {
     }    
 
     // save the updated word to the database
-    await foundedWord.save();
+    const newSavedData = await foundedWord.save();
     res.status(200).json({ message: 'meaning added successfully' });
 
     // for admin
@@ -77,11 +78,12 @@ const addMeaningToWord = async (req, res, userInfo) => {
     const changeData = new Change({
       main_word: english_word,
       type: "new_meaning",
-      key: english_word,
-      changed_data: req.body,
+      key: foundedWord._id,
+      changed_data: newSavedData.meanings.pop(),
       user_logged: userInfo.status,
       user_id: userInfo?.data?.id
     })
+
 
     const changedData =  await changeData.save();
 
@@ -126,4 +128,27 @@ const editWordMeaning = async (req, res) => {
   }
 };
 
-module.exports = { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning }
+// contribution ok
+// if contribution ok remove it details from db
+const contributionOk = async (req, res) => {
+  // remove it from db
+  await Change.findByIdAndDelete(req.params._id)
+  res.redirect("/admin/new-meanings")
+}
+
+// reject contribution
+const rejectContribution = async (req, res) => {
+  try {
+    // Remove contribution from word meanings array
+    Word.findByIdAndUpdate(req.params.key, { $pull: { meanings: { _id: req.params._id } } }).then((data) => {
+      res.redirect('/admin/new-meanings');
+    }).catch((error) => {
+      console.log("@error", error)
+    })
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+module.exports = { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning, contributionOk, rejectContribution }

@@ -8,6 +8,7 @@ router.get("/new-meanings", adminVerfication, async (req, res) => {
     const newMeaningsData = await getNewMeanings()
    // console.log(newMeaningsData)
     res.render("admin/new-meanings", { newMeaningsData })
+    //console.log(newMeaningsData,"@newMeaningsData")
 })
 
 module.exports = router

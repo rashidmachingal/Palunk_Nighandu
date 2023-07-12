@@ -1,5 +1,5 @@
 const express = require("express");
-const { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning } = require("../controllers/wordController");
+const { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning, contributionOk, rejectContribution } = require("../controllers/wordController");
 const { authVerfication, getUser } = require("../utils/authUtils");
 const router = express.Router();
 
@@ -38,6 +38,16 @@ router.post("/add-new-meaning/:english_word" , async (req, res) => {
 // edit word meaning api
 router.post("/edit-word-meaning/:wordId", (req, res) => {
     editWordMeaning(req, res)
+})
+
+// contribution ok api 
+router.post("/contribution-ok/:_id" , (req, res) => {
+    contributionOk(req, res)
+})
+
+// reject contribution 
+router.post("/reject/:_id/:key" , (req, res) => {
+    rejectContribution(req, res)
 })
 
 // sent firebase config keys

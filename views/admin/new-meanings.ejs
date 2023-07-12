@@ -52,11 +52,17 @@
                     Anonymous User
                   </a>
                  <% } %>
-                  
-                  <div>
-                    <button class="ok" >ok</button>
-                    <button class="reject" >reject</button>
-                  </div>
+                
+                 <%# contribution ok api call %>
+                    <form onsubmit="return confirm('Are you sure you want to accept it?');"  alert("xxxxxx"); action="/contribution-ok/<%= element._id %>" method="post" >
+                      <button class="ok" >ok</button>
+                    </form>
+
+                 <%# contribution reject api call %>
+                    <form action="/reject/<%= element.changed_data[0]._id %>/<%= element.key %>" method="post" >
+                      <button class="reject" >reject</button>
+                    </form>
+                 
                  </div>
 
                 </p>
