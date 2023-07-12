@@ -141,8 +141,8 @@ const editWordMeaning = async (req, res) => {
 // contribution ok
 // if contribution ok remove it details from db
 const contributionOk = async (req, res) => {
-  // remove it from db
   // req.params._id for access change collection
+  // remove it from db
   await Change.findByIdAndDelete(req.params._id)
   res.redirect("/admin/new-meanings")
 }
