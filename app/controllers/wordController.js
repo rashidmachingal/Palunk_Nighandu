@@ -14,7 +14,7 @@ const getWordMeaning = async (english_word) => {
 
       // find contributers using id
       const contributorIds = foundedWord.contributers.map(contributor => contributor.user_id);
-      const contributers = await User.find({ _id: { $in: contributorIds } }).select("-_id user_name profile_picture social_media");
+      const contributers = await User.find({ _id: { $in: contributorIds } }).select("_id user_name profile_picture social_media");
       foundedWord.contributersList = contributers;
 
       // return word meanings
@@ -142,6 +142,7 @@ const editWordMeaning = async (req, res) => {
 // if contribution ok remove it details from db
 const contributionOk = async (req, res) => {
   // remove it from db
+  // req.params._id for access change collection
   await Change.findByIdAndDelete(req.params._id)
   res.redirect("/admin/new-meanings")
 }
@@ -149,12 +150,32 @@ const contributionOk = async (req, res) => {
 // reject contribution
 const rejectContribution = async (req, res) => {
   try {
-    // Remove contribution from word meanings array
-    Word.findByIdAndUpdate(req.params.key, { $pull: { meanings: { _id: req.params._id } } }).then((data) => {
-      res.redirect('/admin/new-meanings');
-    }).catch((error) => {
-      console.log("@error", error)
-    })
+    // req.params.key for => find word
+    // req.params._id for => find word meaning
+    // req.params.for_change for => access change collection
+    // req.params.user_id for access user details
+    
+    // remove contribution from word meanings array
+    await  Word.findByIdAndUpdate(req.params.key, { $pull: { meanings: { _id: req.params._id } } })
+    // remove change in change details
+    await Change.findByIdAndDelete(req.params.for_change)
+
+    // if there is user
+      if(!req.params.user_id === "no_user"){
+      // decrease user contribution count
+      const updatedWord = await Word.findOneAndUpdate(
+         { 'contributers.user_id': req.params.user_id },
+         { $inc: { 'contributers.$.count': -1 } },
+         { new: true }
+      )
+
+      // remove contributer if count === 0
+      const contributor = updatedWord.contributers.find(contributor => contributor.user_id === req.params.user_id);
+      if (contributor.count === 0) updatedWord.contributers.pull({ user_id: req.params.user_id })
+      await updatedWord.save()
+    }
+  
+    res.redirect("/admin/new-meanings")
   } catch (error) {
     console.error(error);
   }

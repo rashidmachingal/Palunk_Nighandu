@@ -46,7 +46,7 @@ router.post("/contribution-ok/:_id" , (req, res) => {
 })
 
 // reject contribution 
-router.post("/reject/:_id/:key" , (req, res) => {
+router.post("/reject/:_id/:key/:for_change/:user_id" , (req, res) => {
     rejectContribution(req, res)
 })
 
