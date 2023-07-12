@@ -13,7 +13,8 @@ const getWordMeaning = async (english_word) => {
       if (!foundedWord || !foundedWord.status) return { status: false, english_word }
 
       // find contributers using id
-      const contributers = await User.find({ _id: { $in: foundedWord.contributers } }).select("-_id user_name profile_picture social_media");
+      const contributorIds = foundedWord.contributers.map(contributor => contributor.user_id);
+      const contributers = await User.find({ _id: { $in: contributorIds } }).select("-_id user_name profile_picture social_media");
       foundedWord.contributersList = contributers;
 
       // return word meanings
@@ -63,9 +64,18 @@ const addMeaningToWord = async (req, res, userInfo) => {
     foundedWord.meanings.push(req.body);
     // if user logged in set contributer
     if (userInfo.status === true) {
-      // add this user to contributers list if not already contributer
-      if (!foundedWord.contributers.includes(userInfo.data.id)) {
-        foundedWord.contributers.push(userInfo.data.id);
+      // add this user to contributers list if not already contributer with count => 1
+      // if user already contributor increse contribution count
+      const isUserFound = foundedWord.contributers.some(contributor => contributor.user_id === userInfo.data.id)
+
+      if (!isUserFound) {
+        foundedWord.contributers.push({user_id:userInfo.data.id, count: 1});
+      }else{
+       await Word.findOneAndUpdate(
+          { 'contributers.user_id': userInfo.data.id },
+          { $inc: { 'contributers.$.count': 1 } },
+          { new: true }
+        )
       }
     }    
 
