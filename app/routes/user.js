@@ -55,11 +55,6 @@ router.get("/dashboard", authVerfication, (req, res) => {
     res.render("user/dashboard");
 });
 
-// serve pending page
-router.get("/pending" , (req, res) => {
-    res.render("user/pending")
-})
-
 // serve contributions page
 router.get("/contributions" , (req, res) => {
     res.render("user/contributions")

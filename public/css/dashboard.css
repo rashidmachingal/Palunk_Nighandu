@@ -33,7 +33,7 @@
 }
 /* dashboard end */
 
-/* pending start */
+/* contributions start */
 .pending{
     display: flex;
     justify-content: center;
@@ -75,7 +75,13 @@
 .dot{
     font-size: 6px;
 }
-/* pending end */
+
+.rejected{
+    font-weight: 800;
+    color: red;
+    font-style: italic;
+}
+/* contributions end */
 
 /* admin start */
 .adm-new{
