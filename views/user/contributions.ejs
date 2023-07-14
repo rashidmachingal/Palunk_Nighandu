@@ -23,14 +23,29 @@
           <div class="item-left w100" >
             <p class="mt-1 welcome" >താങ്കളുടെ സംഭാവനകൾ</p>
             <div class="pending mt-1" >
-                <p><i class="fa-solid fa-arrow-right"></i>  
+             <% contributions.forEach((element) => { %>
+              <%# type new-meanings %>
+             <% if (element.type === "new_meaning") { %>
+              <p><i class="fa-solid fa-arrow-right"></i>  
                 നിഘണ്ടുവിൽ നിലവിൽ ഉള്ള 
-                <a href="/" class="eng" >something</a>
+                <a href="/english-malayalam/<%= element.main_word %>" class="eng" ><%= element.main_word %></a>
                 എന്ന വാക്കിലേക്ക് 
-                 <span class="mal" >എന്തോ</span> 
+                 <span class="mal" >
+                  <%= element.changed_data.definition %>
+                 <% if (element.changed_data.part_of_speech !== "-") { %>
+                  (<%= element.changed_data.part_of_speech %>)
+                 <% } %>
+                </span> 
                  എന്ന അർഥം ചേർത്തു
-                 <span class="rejected" >(rejected by admin)</span>
-                </p>
+                <% if (element.approved === false) { %>
+                  <span class="rejected" >(rejected by admin)</span>
+                <% } %>
+              </p>
+             <% } %>
+
+             <% }) %>
+
+                
             </div>
           </div>
         </div>

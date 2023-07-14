@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { registerUser, loginUser } = require("../controllers/authController");
-const { authVerfication } = require("../utils/authUtils");
+const { authVerfication, getUser } = require("../utils/authUtils");
+const { getUserContributions } = require("../controllers/userController");
 
 // serve register page
 router.get("/register" , (req, res) => {
@@ -51,13 +52,15 @@ router.post("/logout" , (req, res) => {
 })
 
 // serve dashboard page 
-router.get("/dashboard", authVerfication, (req, res) => {
+router.get("/dashboard", authVerfication, async (req, res) => {
     res.render("user/dashboard");
 });
 
 // serve contributions page
-router.get("/contributions" , (req, res) => {
-    res.render("user/contributions")
+router.get("/contributions", authVerfication, async (req, res) => {
+    const user = await getUser(req)
+    const userContributions = await getUserContributions(user.data.id)
+    res.render("user/contributions", userContributions)
 })
 
 

@@ -103,11 +103,13 @@ const addMeaningToWord = async (req, res, userInfo) => {
        main_word: english_word,
        type: "new_meaning",
        changed_data: req.body,
+       key: changedData.changed_data[0]._id,
+       approved: true
     }
 
     if(userInfo.status === true){
         const user = await User.findOne({_id:userInfo.data.id})
-        user.newMeanings.push(contributionData)
+        user.contributions.push(contributionData)
         const updatedData = await user.save()
     }
     
@@ -161,7 +163,8 @@ const rejectContribution = async (req, res) => {
     await Change.findByIdAndDelete(req.params.for_change)
 
     // if there is user
-      if(!req.params.user_id === "no_user"){
+      if(req.params.user_id !== "no_user"){
+        console.log("working@1")
       // decrease user contribution count
       const updatedWord = await Word.findOneAndUpdate(
          { 'contributers.user_id': req.params.user_id },
@@ -171,9 +174,18 @@ const rejectContribution = async (req, res) => {
 
       // remove contributer if count === 0
       const contributor = updatedWord.contributers.find(contributor => contributor.user_id === req.params.user_id);
-      if (contributor.count === 0) updatedWord.contributers.pull({ user_id: req.params.user_id })
+      if (contributor.count === 0) {
+        updatedWord.contributers.pull({ user_id: req.params.user_id })
+      }
       await updatedWord.save()
+
+      console.log("working@2")
+
+      // change approval status for user
+      
     }
+
+
   
     res.redirect("/admin/new-meanings")
   } catch (error) {

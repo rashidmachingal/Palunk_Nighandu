@@ -8,9 +8,7 @@ const UserSchema = new mongoose.Schema(
     admin: {type: Boolean, default: false},
     profile_picture: {type: String},
     social_media: {type: String},
-    edits: {type: Array},
-    newMeanings: {type: Array},
-    newWords: {type: Array}
+    contributions: {type: Array},
   },
   { timestamps: true }
 );
