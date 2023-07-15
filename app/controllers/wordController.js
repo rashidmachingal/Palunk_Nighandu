@@ -1,7 +1,6 @@
 const Change = require("../models/Change");
 const Word = require("../models/Word");
 const User = require("../models/User");
-const { default: mongoose } = require("mongoose");
 
 // get single word meaning
 const getWordMeaning = async (english_word) => {
