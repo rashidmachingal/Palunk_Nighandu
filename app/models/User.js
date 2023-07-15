@@ -2,13 +2,21 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    user_name: {type: String},
+    user_name: { type: String },
     email: { type: String },
-    password: {type: String},
-    admin: {type: Boolean, default: false},
-    profile_picture: {type: String},
-    social_media: {type: String},
-    contributions: {type: Array},
+    password: { type: String },
+    admin: { type: Boolean, default: false },
+    profile_picture: { type: String },
+    social_media: { type: String },
+    contributions: [
+      {
+        main_word: { type: String },
+        type: { type: String },
+        changed_data: { type: Object },
+        key: { type: mongoose.Schema.Types.ObjectId },
+        approved: {type: Boolean}
+      },
+    ],
   },
   { timestamps: true }
 );
