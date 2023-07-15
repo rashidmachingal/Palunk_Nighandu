@@ -164,13 +164,16 @@ const rejectContribution = async (req, res) => {
 
     // if there is user
       if(req.params.user_id !== "no_user"){
-        console.log("working@1")
       // decrease user contribution count
       const updatedWord = await Word.findOneAndUpdate(
-         { 'contributers.user_id': req.params.user_id },
-         { $inc: { 'contributers.$.count': -1 } },
-         { new: true }
-      )
+        {
+          _id: req.params.key,
+          'contributers.user_id': req.params.user_id
+        },
+        { $inc: { 'contributers.$.count': -1 } },
+        { new: true }
+      );
+      
 
       // remove contributer if count === 0
       const contributor = updatedWord.contributers.find(contributor => contributor.user_id === req.params.user_id);
@@ -178,8 +181,6 @@ const rejectContribution = async (req, res) => {
         updatedWord.contributers.pull({ user_id: req.params.user_id })
       }
       await updatedWord.save()
-
-      console.log("working@2")
 
       // change approval status for user
       
