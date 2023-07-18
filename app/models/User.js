@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema(
         main_word: { type: String },
         type: { type: String },
         changed_data: { type: Object },
+        old_data: {type : Object},
         key: { type: mongoose.Schema.Types.ObjectId },
         approved: {type: Boolean}
       },

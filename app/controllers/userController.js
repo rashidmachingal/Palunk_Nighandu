@@ -11,4 +11,13 @@ const getUserContributions = async (userId) => {
     }
 }
 
-module.exports = { getUserContributions }
+// add contribution details to db
+const addContributionDetails = async (contributionData, userInfo) => {
+    if(userInfo.status === true){
+        const user = await User.findOne({_id:userInfo.data.id})
+        user.contributions.push(contributionData)
+       await user.save()
+    }
+}
+
+module.exports = { getUserContributions, addContributionDetails }

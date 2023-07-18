@@ -23,8 +23,9 @@
           <div class="item-left w100" >
             <p class="mt-1 welcome" >താങ്കളുടെ സംഭാവനകൾ</p>
             <div class="pending mt-1" >
-             <% contributions.forEach((element) => { %>
-              <%# type new-meanings %>
+             <% contributions.reverse().forEach((element) => { %>
+
+            <%# type => new-meanings start %>
              <% if (element.type === "new_meaning") { %>
               <p><i class="fa-solid fa-arrow-right"></i>  
                 നിഘണ്ടുവിൽ നിലവിൽ ഉള്ള 
@@ -42,6 +43,35 @@
                 <% } %>
               </p>
              <% } %>
+             <%# type => new-meanings end %>
+
+             <%# type => edit meaning start %>
+             <% if (element.type === "edit") { %>
+              <p><i class="fa-solid fa-arrow-right"></i>  
+                നിഘണ്ടുവിൽ നിലവിൽ ഉള്ള 
+                <a href="/english-malayalam/<%= element.main_word %>" class="eng" ><%= element.main_word %></a>
+                എന്ന വാക്കിലെ
+                 <span class="rved" >
+                  <%= element.old_data.definition %>
+                 <% if (element.old_data.part_of_speech !== "-") { %>
+                  (<%= element.old_data.part_of_speech %>)
+                 <% } %>
+                </span> 
+                എന്ന അർഥം മാറ്റി 
+                <span class="mal" >
+                  <%= element.changed_data.definition %>
+                 <% if (element.changed_data.part_of_speech !== "-") { %>
+                  (<%= element.changed_data.part_of_speech %>)
+                 <% } %>
+                </span> 
+                എന്നാക്കി
+
+                <% if (element.approved === false) { %>
+                  <span class="rejected" >(rejected by admin)</span>
+                <% } %>
+              </p>
+             <% } %>
+             <%# type => edit meaning end %>
 
              <% }) %>
 

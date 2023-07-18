@@ -83,4 +83,38 @@ const contributionOk = async (req, res) => {
   res.redirect("/admin/new-meanings")
 }
 
-module.exports = { getChangesDetails, rejectContributionNewMeaning, contributionOk }
+// set contributer to word function
+const setContributer = async (userInfo, foundedWord)  => {
+  if (userInfo.status === true) {
+    // add this user to contributers list if not already contributer with count => 1
+    // if user already contributor increse contribution count
+    const isUserFound = foundedWord.contributers.some(contributor => contributor.user_id === userInfo.data.id)
+
+    if (!isUserFound) {
+      foundedWord.contributers.push({user_id:userInfo.data.id, count: 1});
+    }else{
+     await Word.findOneAndUpdate(
+        { 'contributers.user_id': userInfo.data.id },
+        { $inc: { 'contributers.$.count': 1 } },
+        { new: true }
+      )
+    }
+  }
+}
+
+// add change details to db
+const addChangeDetails = async (main_word, type, key, changed_data, old_data, user_logged, user_id) => {
+  const changeData = new Change({
+    main_word: main_word,
+    type: type,
+    key: key,
+    changed_data: changed_data,
+    old_data: old_data,
+    user_logged: user_logged,
+    user_id: user_id
+  })
+
+  await changeData.save();
+}
+
+module.exports = { getChangesDetails, rejectContributionNewMeaning, contributionOk, setContributer, addChangeDetails }

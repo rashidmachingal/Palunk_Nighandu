@@ -6,6 +6,7 @@ const ChangeSchema = new mongoose.Schema(
     type: {type: String},
     key: {type: String},
     changed_data: {type: Array},
+    old_data: {type: Array},
     user_logged: {type: Boolean},
     user_id: {type: String},
     user_details: {type: Array}

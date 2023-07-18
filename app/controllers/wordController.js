@@ -1,6 +1,8 @@
 const Change = require("../models/Change");
 const Word = require("../models/Word");
 const User = require("../models/User");
+const { setContributer, addChangeDetails } = require("./adminController");
+const { addContributionDetails } = require("./userController");
 
 // get single word meaning
 const getWordMeaning = async (english_word) => {
@@ -63,6 +65,7 @@ const addMeaningToWord = async (req, res, userInfo) => {
 
     // add the new meaning to the word's meanings array
     foundedWord.meanings.push(req.body);
+
     // if user logged in set contributer
     if (userInfo.status === true) {
       // add this user to contributers list if not already contributer with count => 1
@@ -104,7 +107,7 @@ const addMeaningToWord = async (req, res, userInfo) => {
        main_word: english_word,
        type: "new_meaning",
        changed_data: req.body,
-       key: changedData.changed_data[0]._id,
+       key: foundedWord._id,
        approved: true
     }
 
@@ -127,30 +130,41 @@ const editWordMeaning = async (req, res, userInfo) => {
   try {
     const { wordId } = req.params
 
+    // find the word in the database
+    const foundedWord = await Word.findOne({_id: wordId});
+
+    // get old data
+    const oldData = await Word.findOne(
+      { _id: wordId },
+      { meanings: { $elemMatch: { _id: req.body._id } } }
+    );
+
+    // edit word meanigs
     const updatedWord = await Word.findOneAndUpdate(
       { _id: wordId, 'meanings._id': req.body._id },
       { $set: { 'meanings.$': req.body } },
       { new: true }
       
     )
-
     res.status(200).json({ message: "word meaning edited successfully", updatedWord })
+
+
+    // for word
+    // if user logged in set contributer
+    await setContributer(userInfo, foundedWord)
+    await foundedWord.save()
 
     // for admin
     // add the edit to changes
-    const changeData = new Change({
-      main_word: updatedWord.english_word,
-      type: "edit",
-      key: updatedWord._id,
-      changed_data: req.body,
-      user_logged: userInfo.status,
-      user_id: userInfo?.data?.id
-    })
+    await addChangeDetails(foundedWord.english_word,"edit",foundedWord._id, req.body, oldData.meanings[0], userInfo.status, userInfo?.data?.id)
 
-    const changedData =  await changeData.save();
+    // for user
+    // add edit contribution details to user profile
+    addContributionDetails({main_word: foundedWord.english_word,type: "edit",changed_data: req.body,old_data: oldData.meanings[0],key: foundedWord._id,approved: true}, userInfo)
+
 
   } catch (error) {
-    res.status(500).json({ message: 'error occurred while edit word meaning/part_of_speech' });
+   console.log("@error", error)
   }
 };
 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Palunk Nighandu</title>
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- header imports -->
+    <%- include('../partials/header') %>
+</head>
+<body>
+
+    <!-- navbar -->
+      <%- include('../partials/navbar') %>
+    <!-- navbar -->
+
+    <div class="w100 item-center" >
+        <div class="main-box" >
+          <!-- topbar -->
+            <%- include('./topbar', {active: "edits"}) %>
+          <!-- topbar -->
+          <div class="item-left w100" >
+            <p class="mt-1 welcome" >നിലവിൽ ഉള്ള ഇംഗ്ലീഷ്  വാക്കിന്റെ അർഥങ്ങൾ തിരുത്തിയ വിവരങ്ങൾ</p>
+            <div class="adm-new mt-1" >
+
+              <% editMeaningsData.reverse().forEach((element) => { %>
+                <p> 
+                    <i class="fa-solid fa-arrow-right"></i>  
+                    നിഘണ്ടുവിൽ നിലവിൽ ഉള്ള <a href="/" class="eng" ><%= element.main_word %></a> 
+                    എന്ന വാക്കിലെ 
+                    <span class="rved" >
+                        <%= element.old_data[0].definition %> 
+                      <% if (element.old_data[0].part_of_speech !== "-") { %>
+                         (<%= element.old_data[0].part_of_speech %>)
+                      <% } %>
+                    </span> 
+                    എന്ന അർഥം മാറ്റി 
+                    <span class="mal" >
+                      <%= element.changed_data[0].definition %> 
+                      <% if (element.changed_data[0].part_of_speech !== "-") { %>
+                         (<%= element.changed_data[0].part_of_speech %>)
+                      <% } %>
+                    </span> 
+                    എന്നാക്കി
+
+                    <div class="amd-hold" >
+                        <% if (element.user_logged) { %>
+                         <a href="" class="by-user" >
+                           by
+                           <img src="<%= element.user_details[0].profile_picture %>" alt="">
+                           <%= element.user_details[0].user_name %>
+                         </a>
+                        <% } %>
+       
+                        <% if (element.user_logged === false) { %>
+                         <a href="" class="by-user" >
+                           by
+                           <img src="/img/avatar.png" alt="">
+                           Anonymous User
+                         </a>
+                        <% } %>
+                       
+                        <%# contribution ok api call %>
+                              <%# element._id for access change collection %>
+                           <form onsubmit="return confirm('Are you sure you want to accept it?');" action="/admin/contribution-ok/<%= element._id %>" method="post" >
+                             <button class="ok" >ok</button>
+                           </form>
+       
+                        <%# contribution reject api call %>
+                              <%# element.changed_data[0]._id is => changed data details %>
+                              <%# element.key for => find english word %>
+                              <%# element._id for => access change collection %>
+                              <%# element.user_id for => find user %>
+                           <form onsubmit="return confirm('Are you sure you want to reject it?');" action="/admin/reject/<%= element.changed_data[0]._id %>/<%= element.key %>/<%= element._id %>/<%= element.user_id || 'no_user' %>" method="post" >
+                             <button class="reject" >reject</button>
+                           </form>
+                    </div>
+
+                </p>
+              <% }) %>
+
+            </div>
+          </div>
+        </div>
+     </div>
+ 
+     <!-- footer  -->
+       <%- include('../partials/footer') %>
+     <!-- footer  -->
+</body>
+</html>
