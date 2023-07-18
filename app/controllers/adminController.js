@@ -1,5 +1,6 @@
 const Change = require("../models/Change");
 const User = require("../models/User");
+const Word = require("../models/Word");
 
 
 // get changes details => new meanings added to exsting english word
