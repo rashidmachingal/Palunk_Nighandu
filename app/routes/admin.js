@@ -1,12 +1,18 @@
 const express = require("express");
 const { adminVerfication } = require("../utils/authUtils");
-const { getNewMeanings, contributionOk, rejectContributionNewMeaning } = require("../controllers/adminController");
+const { getChangesDetails, contributionOk, rejectContributionNewMeaning } = require("../controllers/adminController");
 const router = express.Router();
 
 // serve new-meanings page
 router.get("/new-meanings", adminVerfication, async (req, res) => {
-    const newMeaningsData = await getNewMeanings()
+    const newMeaningsData = await getChangesDetails("new_meaning")
     res.render("admin/new-meanings", { newMeaningsData })
+})
+
+// serve edit-meanings page
+router.get("/edits", adminVerfication, async (req, res) => {
+    const editMeaningsData = await getChangesDetails("edit")
+    res.render("admin/edits", { editMeaningsData })
 })
 
 // reject contribution => new-meanings to exsting word 

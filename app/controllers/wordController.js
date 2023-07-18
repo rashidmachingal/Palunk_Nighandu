@@ -47,6 +47,8 @@ const addNewWord = async (req, res) => {
   }
 };
 
+
+
 // add a new meaning to an existing word
 const addMeaningToWord = async (req, res, userInfo) => {
   try {
@@ -118,21 +120,34 @@ const addMeaningToWord = async (req, res, userInfo) => {
   }
 };
 
+
+
 // edit word meaning in exsting word
-const editWordMeaning = async (req, res) => {
+const editWordMeaning = async (req, res, userInfo) => {
   try {
     const { wordId } = req.params
 
-    Word.findOneAndUpdate(
+    const updatedWord = await Word.findOneAndUpdate(
       { _id: wordId, 'meanings._id': req.body._id },
       { $set: { 'meanings.$': req.body } },
       { new: true }
       
-    ).then((updatedWord) => {
-      res.status(200).json({ message: "word meaning edited successfully", updatedWord })
-    }).catch((error) => {
-      res.status(500).json(error)
+    )
+
+    res.status(200).json({ message: "word meaning edited successfully", updatedWord })
+
+    // for admin
+    // add the edit to changes
+    const changeData = new Change({
+      main_word: updatedWord.english_word,
+      type: "edit",
+      key: updatedWord._id,
+      changed_data: req.body,
+      user_logged: userInfo.status,
+      user_id: userInfo?.data?.id
     })
+
+    const changedData =  await changeData.save();
 
   } catch (error) {
     res.status(500).json({ message: 'error occurred while edit word meaning/part_of_speech' });

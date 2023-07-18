@@ -36,8 +36,13 @@ router.post("/add-new-meaning/:english_word" , async (req, res) => {
 })
 
 // edit word meaning api
-router.post("/edit-word-meaning/:wordId", (req, res) => {
-    editWordMeaning(req, res)
+router.post("/edit-word-meaning/:wordId", async (req, res) => {
+    try {
+      const userInfo = await getUser(req)
+      editWordMeaning(req, res, userInfo)
+    } catch (error) {
+      editWordMeaning(req, res, userInfo)
+    }
 })
 
 // sent firebase config keys

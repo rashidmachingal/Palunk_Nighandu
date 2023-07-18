@@ -3,10 +3,10 @@ const User = require("../models/User");
 const Word = require("../models/Word");
 
 
-// get changes details => new meanings added to exsting english word
-const getNewMeanings = async () => {
+// get changes details
+const getChangesDetails = async (type) => {
     try {
-      const data = await Change.find({ type: "new_meaning" });
+      const data = await Change.find({ type: type });
       
       for (let index = 0; index < data.length; index++) {
          const contributor = await User.findOne({ _id: data[index].user_id });
@@ -18,15 +18,6 @@ const getNewMeanings = async () => {
       console.log("@error", error);
     }
   };
-
-  // contribution ok
-// if contribution ok remove it details from db
-const contributionOk = async (req, res) => {
-  // req.params._id for access change collection
-  // remove it from db
-  await Change.findByIdAndDelete(req.params._id)
-  res.redirect("/admin/new-meanings")
-}
 
 // reject contribution
 const rejectContributionNewMeaning = async (req, res) => {
@@ -83,4 +74,13 @@ const rejectContributionNewMeaning = async (req, res) => {
   }
 };
 
-module.exports = { getNewMeanings, rejectContributionNewMeaning, contributionOk }
+// contribution ok
+// if contribution ok remove it details from db
+const contributionOk = async (req, res) => {
+  // req.params._id for access change collection
+  // remove it from db
+  await Change.findByIdAndDelete(req.params._id)
+  res.redirect("/admin/new-meanings")
+}
+
+module.exports = { getChangesDetails, rejectContributionNewMeaning, contributionOk }
