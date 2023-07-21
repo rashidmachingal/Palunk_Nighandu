@@ -66,22 +66,9 @@ const addMeaningToWord = async (req, res, userInfo) => {
     // add the new meaning to the word's meanings array
     foundedWord.meanings.push(req.body);
 
+    // for word
     // if user logged in set contributer
-    if (userInfo.status === true) {
-      // add this user to contributers list if not already contributer with count => 1
-      // if user already contributor increse contribution count
-      const isUserFound = foundedWord.contributers.some(contributor => contributor.user_id === userInfo.data.id)
-
-      if (!isUserFound) {
-        foundedWord.contributers.push({user_id:userInfo.data.id, count: 1});
-      }else{
-       await Word.findOneAndUpdate(
-          { 'contributers.user_id': userInfo.data.id },
-          { $inc: { 'contributers.$.count': 1 } },
-          { new: true }
-        )
-      }
-    }    
+    await setContributer(userInfo, foundedWord)   
 
     // save the updated word to the database
     const newSavedData = await foundedWord.save();
@@ -99,23 +86,11 @@ const addMeaningToWord = async (req, res, userInfo) => {
     })
 
 
-    const changedData =  await changeData.save();
+    await changeData.save();
 
     // for user
     // add to newMeaning contribution details
-    const contributionData = {
-       main_word: english_word,
-       type: "new_meaning",
-       changed_data: req.body,
-       key: foundedWord._id,
-       approved: true
-    }
-
-    if(userInfo.status === true){
-        const user = await User.findOne({_id:userInfo.data.id})
-        user.contributions.push(contributionData)
-        const updatedData = await user.save()
-    }
+    addContributionDetails({ main_word: english_word, type: "new_meaning", changed_data: req.body, key: foundedWord._id, approved: true}, userInfo)
     
   } catch (error) {
     console.error(error);
@@ -160,7 +135,7 @@ const editWordMeaning = async (req, res, userInfo) => {
 
     // for user
     // add edit contribution details to user profile
-    addContributionDetails({main_word: foundedWord.english_word,type: "edit",changed_data: req.body,old_data: oldData.meanings[0],key: foundedWord._id,approved: true}, userInfo)
+    await addContributionDetails({main_word: foundedWord.english_word,type: "edit",changed_data: req.body,old_data: oldData.meanings[0],key: foundedWord._id,approved: true}, userInfo)
 
 
   } catch (error) {
