@@ -32,6 +32,7 @@ const rejectContributionNewMeaning = async (req, res) => {
     // remove change in change details
     await Change.findByIdAndDelete(req.params.for_change)
 
+    // user contribution status & count function
     // if there is user
       if(req.params.user_id !== "no_user"){
       // decrease user contribution count
@@ -94,11 +95,13 @@ const setContributer = async (userInfo, foundedWord)  => {
     if (!isUserFound) {
       foundedWord.contributers.push({user_id:userInfo.data.id, count: 1});
     }else{
-     await Word.findOneAndUpdate(
-        { 'contributers.user_id': userInfo.data.id },
+    const updatedWord = await Word.findOneAndUpdate(
+        { _id: foundedWord._id, 'contributers.user_id': userInfo.data.id },
         { $inc: { 'contributers.$.count': 1 } },
         { new: true }
-      )
+    )
+
+      await updatedWord.save()
     }
   }
 }
