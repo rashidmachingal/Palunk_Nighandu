@@ -80,7 +80,7 @@ const addMeaningToWord = async (req, res, userInfo) => {
 
     // for user
     // add to newMeaning contribution details
-    addContributionDetails({ main_word: english_word, type: "new_meaning", changed_data: newSavedData.meanings.pop(), key: foundedWord._id, approved: true}, userInfo)
+    await addContributionDetails({ main_word: english_word, type: "new_meaning", changed_data: req.body, key: foundedWord._id, approved: true}, userInfo)
     
   } catch (error) {
     console.error(error);

@@ -52,17 +52,19 @@ const rejectContributionNewMeaning = async (req, res) => {
       }
       await updatedWord.save()
 
+      console.log(req.params.key)
+
       // change approval status for user
       const updateUser = await User.findOneAndUpdate(
         {
           _id: req.params.user_id,
-          'contributions.key': req.params._id
+          'contributions.key': req.params.key
         },
         { $set: { 'contributions.$.approved': false } },
         { new: true }
       );
 
-      await updateUser.save();
+     await updateUser.save();
 
     }
 
