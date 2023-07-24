@@ -57,7 +57,7 @@ const rejectContributionNewMeaning = async (req, res) => {
       const updateUser = await User.findOneAndUpdate(
         {
           _id: req.params.user_id,
-          'contributions.key': req.params.key
+          'contributions.key': req.params._id
         },
         { $set: { 'contributions.$.approved': false } },
         { new: true }
@@ -105,6 +105,7 @@ const setContributer = async (userInfo, foundedWord)  => {
 
 // add change details to db
 const addChangeDetails = async (main_word, type, key, changed_data, old_data, user_logged, user_id) => {
+
   const changeData = new Change({
     main_word: main_word,
     type: type,

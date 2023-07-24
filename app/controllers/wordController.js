@@ -74,13 +74,15 @@ const addMeaningToWord = async (req, res, userInfo) => {
     const newSavedData = await foundedWord.save();
     res.status(200).json({ message: 'meaning added successfully' });
 
+    const changesData = newSavedData.meanings.pop()
+
     // for admin
     // add the new meaning to changes
-    await addChangeDetails(english_word,"new_meaning",foundedWord._id, newSavedData.meanings.pop(), {}, userInfo.status, userInfo?.data?.id)
+    await addChangeDetails(english_word,"new_meaning",foundedWord._id, changesData, {}, userInfo.status, userInfo?.data?.id)
 
     // for user
     // add to newMeaning contribution details
-    await addContributionDetails({ main_word: english_word, type: "new_meaning", changed_data: req.body, key: foundedWord._id, approved: true}, userInfo)
+    await addContributionDetails({ main_word: english_word, type: "new_meaning", changed_data: req.body, key: changesData._id, approved: true}, userInfo)
     
   } catch (error) {
     console.error(error);
