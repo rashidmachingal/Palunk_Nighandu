@@ -127,7 +127,7 @@ const editWordMeaning = async (req, res, userInfo) => {
 
     // for user
     // add edit contribution details to user profile
-    await addContributionDetails({main_word: foundedWord.english_word,type: "edit",changed_data: req.body,old_data: oldData.meanings[0],key: foundedWord._id,approved: true}, userInfo)
+    await addContributionDetails({main_word: foundedWord.english_word,type: "edit",changed_data: req.body,old_data: oldData.meanings[0],key: req.body._id,approved: true}, userInfo)
 
 
   } catch (error) {

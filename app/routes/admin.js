@@ -1,6 +1,6 @@
 const express = require("express");
 const { adminVerfication } = require("../utils/authUtils");
-const { getChangesDetails, contributionOk, rejectContributionNewMeaning } = require("../controllers/adminController");
+const { getChangesDetails, contributionOk, rejectContributionNewMeaning, rejectContributionEditMeaning } = require("../controllers/adminController");
 const router = express.Router();
 
 // serve new-meanings page
@@ -18,6 +18,11 @@ router.get("/edits", adminVerfication, async (req, res) => {
 // reject contribution => new-meanings to exsting word 
 router.post("/reject/new-meanings/:_id/:key/:for_change/:user_id" , adminVerfication , (req, res) => {
     rejectContributionNewMeaning(req, res)
+})
+
+// reject contribution => edit meanings in exsting word 
+router.post("/reject/edit/:_id/:key/:for_change/:user_id/:old_meaning/:old_pos" , adminVerfication , (req, res) => {
+    rejectContributionEditMeaning(req, res)
 })
 
 // contribution ok api 

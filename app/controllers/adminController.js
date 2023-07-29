@@ -19,7 +19,90 @@ const getChangesDetails = async (type) => {
     }
   };
 
-// reject contribution
+// reject contribution edit meaning
+const rejectContributionEditMeaning = async (req, res) => {
+  try {
+    // req.params.key for => find word
+    // req.params._id for => find word meaning
+    // req.params.for_change for => access change collection
+    // req.params.user_id for access user details
+
+
+    // old data
+    const oldData = {
+      _id: req.params._id,
+      definition: req.params.old_meaning,
+      part_of_speech: req.params.old_pos
+    }
+    
+    // change meanings to old data
+    await Word.findOneAndUpdate(
+      { _id: req.params.key, 'meanings._id': req.params._id },
+      { $set: { 'meanings.$': oldData } },
+      { new: true }
+      
+    )
+
+    // remove change in change details
+    await Change.findByIdAndDelete(req.params.for_change)
+
+    // user contribution status & count function
+    // if there is user
+      if(req.params.user_id !== "no_user"){
+      // decrease user contribution count
+
+      const englishWord = await Word.findOne({_id:req.params.key})
+
+      if(englishWord.contributers.length !== 0){
+        const updatedWord = await Word.findOneAndUpdate(
+          {
+            _id: req.params.key,
+            'contributers.user_id': req.params.user_id
+          },
+          { $inc: { 'contributers.$.count': -1 } },
+          { new: true }
+        );
+        
+  
+        // remove contributer if count === 0
+        const contributor = updatedWord.contributers.find(contributor => contributor.user_id === req.params.user_id);
+        if (contributor.count === 0) {
+          updatedWord.contributers.pull({ user_id: req.params.user_id })
+        }
+
+        await updatedWord.save()
+
+      }
+
+
+      // change approval status for user
+      const updateUser = await User.findOneAndUpdate(
+        {
+          _id: req.params.user_id,
+          'contributions.key': req.params._id
+        },
+        { $set: { 'contributions.$.approved': false } },
+        { new: true }
+      );
+
+      await updateUser.save();
+    
+      console.log(req.params.user_id)
+      console.log(req.params._id)
+     
+
+    }
+
+
+  
+    res.redirect("/admin/edits")
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+// reject contribution new meaning
 const rejectContributionNewMeaning = async (req, res) => {
   try {
     // req.params.key for => find word
@@ -129,4 +212,4 @@ const addChangeDetails = async (main_word, type, key, changed_data, old_data, us
   await changeData.save();
 }
 
-module.exports = { getChangesDetails, rejectContributionNewMeaning, contributionOk, setContributer, addChangeDetails }
+module.exports = { getChangesDetails, rejectContributionNewMeaning, contributionOk, setContributer, addChangeDetails, rejectContributionEditMeaning }
