@@ -36,22 +36,29 @@ const rejectContributionNewMeaning = async (req, res) => {
     // if there is user
       if(req.params.user_id !== "no_user"){
       // decrease user contribution count
-      const updatedWord = await Word.findOneAndUpdate(
-        {
-          _id: req.params.key,
-          'contributers.user_id': req.params.user_id
-        },
-        { $inc: { 'contributers.$.count': -1 } },
-        { new: true }
-      );
-      
 
-      // remove contributer if count === 0
-      const contributor = updatedWord.contributers.find(contributor => contributor.user_id === req.params.user_id);
-      if (contributor.count === 0) {
-        updatedWord.contributers.pull({ user_id: req.params.user_id })
+      const englishWord = await Word.findOne({_id:req.params.key})
+
+      if(englishWord.contributers.length !== 0){
+        const updatedWord = await Word.findOneAndUpdate(
+          {
+            _id: req.params.key,
+            'contributers.user_id': req.params.user_id
+          },
+          { $inc: { 'contributers.$.count': -1 } },
+          { new: true }
+        );
+        
+  
+        // remove contributer if count === 0
+        const contributor = updatedWord.contributers.find(contributor => contributor.user_id === req.params.user_id);
+        if (contributor.count === 0) {
+          updatedWord.contributers.pull({ user_id: req.params.user_id })
+        }
+
+        await updatedWord.save()
+
       }
-      await updatedWord.save()
 
 
       // change approval status for user
