@@ -21,8 +21,13 @@ router.get("/add-new-word", async (req, res) => {
 })
 
 // add new word to database api
-router.post("/add-new-word", (req, res) => {
-    addNewWord(req, res)
+router.post("/add-new-word", async (req, res) => {
+    try{
+        const userInfo = await getUser(req)
+        addNewWord(req, res, userInfo)
+    }catch (userInfo) {
+        addNewWord(req, res, userInfo)
+    }
 })
 
 // add a new meaning to and existing word api

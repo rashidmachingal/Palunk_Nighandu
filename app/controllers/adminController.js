@@ -19,6 +19,37 @@ const getChangesDetails = async (type) => {
     }
   };
 
+// reject contribution new words
+const rejectContributionNewWords = async (req, res) => {
+  try {
+    // remove word from db
+  await Word.findByIdAndDelete(req.params.key);
+
+  // remove change in change details
+  await Change.findByIdAndDelete(req.params.for_change)
+
+  // if there is user
+  // change approval status for user
+  if(req.params.user_id !== "no_user"){
+    const updateUser = await User.findOneAndUpdate(
+      {
+        _id: req.params.user_id,
+        'contributions.key': req.params.ref
+      },
+      { $set: { 'contributions.$.approved': false } },
+      { new: true }
+    );
+
+    await updateUser.save();
+
+  }
+
+  res.redirect("/admin/new-entries")
+  } catch (error) {
+    console.log("@error", error)
+  }
+}
+
 // reject contribution edit meaning
 const rejectContributionEditMeaning = async (req, res) => {
   try {
@@ -83,7 +114,7 @@ const rejectContributionEditMeaning = async (req, res) => {
         },
         { $set: { 'contributions.$.approved': false } },
         { new: true }
-      );ss
+      );
 
       await updateUser.save();
   
@@ -168,7 +199,7 @@ const contributionOk = async (req, res) => {
   // req.params._id for access change collection
   // remove it from db
   await Change.findByIdAndDelete(req.params._id)
-  res.redirect("/admin/new-meanings")
+  res.redirect(`/admin/${req.params.url}`)
 }
 
 // set contributer to word function
@@ -209,4 +240,4 @@ const addChangeDetails = async (main_word, type, key, changed_data, old_data, us
   await changeData.save();
 }
 
-module.exports = { getChangesDetails, rejectContributionNewMeaning, contributionOk, setContributer, addChangeDetails, rejectContributionEditMeaning }
+module.exports = { getChangesDetails, rejectContributionNewMeaning, contributionOk, setContributer, addChangeDetails, rejectContributionEditMeaning, rejectContributionNewWords }

@@ -18,23 +18,29 @@
     <div class="w100 item-center" >
         <div class="main-box" >
           <!-- topbar -->
-            <%- include('./topbar', {active: "new-meanings"}) %>
+            <%- include('./topbar', {active: "new-words"}) %>
           <!-- topbar -->
           <div class="item-left w100" >
-            <p class="mt-1 welcome" >നിലവിൽ ഉള്ള ഇംഗ്ലീഷ് വാക്കിലേക്ക് പുതിയ അർഥങ്ങൾ ചേർത്ത വിവരങ്ങൾ</p>
+            <p class="mt-1 welcome" >നിഘണ്ടുവിലേക് പുതിയ പദങ്ങൾ ചേർത്ത വിവരങ്ങൾ</p>
             <div class="adm-new mt-1" >
 
-              <% newMeaningsData.reverse().forEach((element) => { %>
+              <% newWordsData.reverse().forEach((element) => { %>
                 <p>
                   <i class="fa-solid fa-arrow-right"></i> 
-                  <a href="/" class="eng" ><%= element.main_word %></a> എന്ന വാക്കിലേക്ക് 
-                  <span class="mal" >
-                    <%= element.changed_data[0].definition %> 
-                   <% if (element.changed_data[0].part_of_speech !== "-") { %>
-                    (<%= element.changed_data[0].part_of_speech %>)
-                   <% } %>
-                  </span>
-                     എന്ന അർഥം ചേർത്തു
+                  നിഘണ്ടുവിലേക്ക് 
+                  <a href="/english-malayalam/<%= element.main_word %>" class="eng" ><%= element.main_word %></a>
+                  എന്ന ഇംഗ്ലീഷ് പദം ചേർത്തു 
+
+                  <ul class="list-items" >
+                    <% element.changed_data.forEach((data, index) => { %>
+                      <li class="result-item" >
+                        <%= data.definition %>
+                        <% if (data.part_of_speech !== '-') { %>
+                          <span>(<%= data.part_of_speech %>)</span>
+                        <% } %>
+                      </li>
+                    <% }) %>
+                  </ul>
                   
                  <div class="amd-hold" >
                  <% if (element.user_logged) { %>
@@ -55,7 +61,7 @@
                 
                  <%# contribution ok api call %>
                        <%# element._id for access change collection %>
-                    <form onsubmit="return confirm('Are you sure you want to accept it?');" action="/admin/contribution-ok/<%= element._id %>/new-meanings" method="post" >
+                    <form onsubmit="return confirm('Are you sure you want to accept it?');" action="/admin/contribution-ok/<%= element._id %>/new-entries" method="post" >
                       <button class="ok" >ok</button>
                     </form>
 
@@ -64,7 +70,7 @@
                        <%# element.key for => find english word %>
                        <%# element._id for => access change collection %>
                        <%# element.user_id for => find user %>
-                    <form onsubmit="return confirm('Are you sure you want to reject it?');" action="/admin/reject/new-meanings/<%= element.changed_data[0]._id %>/<%= element.key %>/<%= element._id %>/<%= element.user_id || 'no_user' %>/<%= element.ref %>" method="post" >
+                    <form onsubmit="return confirm('Are you sure you want to reject it?');" action="/admin/reject/new-words/<%= element.key %>/<%= element._id %>/<%= element.user_id || 'no_user' %>/<%= element.ref %>" method="post" >
                       <button class="reject" >reject</button>
                     </form>
                  

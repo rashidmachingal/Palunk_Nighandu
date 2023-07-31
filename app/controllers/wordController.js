@@ -26,7 +26,7 @@ const getWordMeaning = async (english_word) => {
 };
 
 // add new word to database
-const addNewWord = async (req, res) => {
+const addNewWord = async (req, res, userInfo) => {
   try {
     const { english_word, meanings } = req.body;
     // if the word already exists sent error message
@@ -42,6 +42,26 @@ const addNewWord = async (req, res) => {
     // save the new word to the database and sent success message
     const addedWord =  await newWord.save();
     res.status(201).json({ message: 'word added successfully', word: addedWord });
+
+    // find the word in the database
+    const foundedWord = await Word.findOne({ english_word });
+
+    // for word
+    // if user logged in set contributer
+    await setContributer(userInfo, foundedWord)   
+
+    const newSavedData = await foundedWord.save();
+
+    // create unique id
+    const uniqueID = Date.now();
+
+    // for admin
+    // add the new meaning to changes
+    await addChangeDetails(english_word,"new_word",foundedWord._id, meanings, {}, userInfo.status, userInfo?.data?.id, uniqueID)
+
+    // for user
+    // add to newMeaning contribution details
+    await addContributionDetails({ main_word: english_word, type: "new_word", changed_data: meanings, key: uniqueID, approved: true}, userInfo)
 
   } catch (error) {
     console.error(error);

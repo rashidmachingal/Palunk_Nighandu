@@ -96,7 +96,7 @@ loginForm.addEventListener("submit", (event) => {
         if(response.status === true) {
             // if user is admin redirect to admin dashboard
             if(response.admin === true) {
-                location.replace("/admin/new-meanings")
+                location.replace("/admin/new-entries")
             }else{
                 location.replace("/account/dashboard")
             }

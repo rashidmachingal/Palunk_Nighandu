@@ -63,7 +63,7 @@
                        
                         <%# contribution ok api call %>
                               <%# element._id for access change collection %>
-                           <form onsubmit="return confirm('Are you sure you want to accept it?');" action="/admin/contribution-ok/<%= element._id %>" method="post" >
+                           <form onsubmit="return confirm('Are you sure you want to accept it?');" action="/admin/contribution-ok/<%= element._id %>/edits" method="post" >
                              <button class="ok" >ok</button>
                            </form>
        

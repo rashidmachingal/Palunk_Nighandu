@@ -73,6 +73,31 @@
              <% } %>
              <%# type => edit meaning end %>
 
+             <%# type => new word start %>
+             <% if (element.type === "new_word") { %>
+              <p><i class="fa-solid fa-arrow-right"></i>  
+                നിഘണ്ടുവിലേക്ക് 
+                <a href="/english-malayalam/<%= element.main_word %>" class="eng" ><%= element.main_word %></a>
+                എന്ന ഇംഗ്ലീഷ് പദം ചേർത്തു 
+
+                <ul class="list-items" >
+                  <% element.changed_data.forEach((data, index) => { %>
+                    <li class="result-item" >
+                      <%= data.definition %>
+                      <% if (data.part_of_speech !== '-') { %>
+                        <span>(<%= data.part_of_speech %>)</span>
+                      <% } %>
+                    </li>
+                  <% }) %>
+                </ul>
+
+                <% if (element.approved === false) { %>
+                  <span class="rejected" >(rejected by admin)</span>
+                <% } %>
+              </p>
+             <% } %>
+             <%# type => new word end %>
+
              <% }) %>
 
                 

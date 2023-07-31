@@ -1,7 +1,13 @@
 const express = require("express");
 const { adminVerfication } = require("../utils/authUtils");
-const { getChangesDetails, contributionOk, rejectContributionNewMeaning, rejectContributionEditMeaning } = require("../controllers/adminController");
+const { getChangesDetails, contributionOk, rejectContributionNewMeaning, rejectContributionEditMeaning, rejectContributionNewWords } = require("../controllers/adminController");
 const router = express.Router();
+
+// serve new-words page
+router.get("/new-entries", adminVerfication, async (req, res) => {
+    const newWordsData = await getChangesDetails("new_word")
+    res.render("admin/new-words", { newWordsData })
+})
 
 // serve new-meanings page
 router.get("/new-meanings", adminVerfication, async (req, res) => {
@@ -16,6 +22,11 @@ router.get("/edits", adminVerfication, async (req, res) => {
 })
 
 // reject contribution => new-meanings to exsting word 
+router.post("/reject/new-words/:key/:for_change/:user_id/:ref" , adminVerfication , (req, res) => {
+    rejectContributionNewWords(req, res)
+})
+
+// reject contribution => new-meanings to exsting word 
 router.post("/reject/new-meanings/:_id/:key/:for_change/:user_id/:ref" , adminVerfication , (req, res) => {
     rejectContributionNewMeaning(req, res)
 })
@@ -26,7 +37,7 @@ router.post("/reject/edit/:_id/:key/:for_change/:user_id/:old_meaning/:old_pos/:
 })
 
 // contribution ok api 
-router.post("/contribution-ok/:_id" , adminVerfication, async (req, res) => {
+router.post("/contribution-ok/:_id/:url" , adminVerfication, async (req, res) => {
     contributionOk(req, res)
 })
 
