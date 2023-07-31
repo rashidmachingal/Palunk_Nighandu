@@ -29,7 +29,8 @@ registerForm.addEventListener("submit", async (event) => {
     authSubmitBtn.innerHTML = "loading..."
 
     // upload profile image to firebase storage and get image
-    const profile_picture = await profilePicutureUpload()
+    const fileName = Date.now();
+    const profile_picture = await profilePicutureUpload(fileName)
 
     const registerData = {
         user_name: userName.value,

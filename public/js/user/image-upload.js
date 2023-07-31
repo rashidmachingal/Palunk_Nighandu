@@ -8,7 +8,7 @@ async function firebaseConfiguration() {
 firebaseConfiguration()
 
 // function for upload user profile picture to firebase storage
-function profilePicutureUpload() {
+function profilePicutureUpload(fileName) {
     return new Promise((resolve, reject) => {
       const file = profilePicture.files[0]; // get the first selected file
   
@@ -19,8 +19,7 @@ function profilePicutureUpload() {
       const storageRef = firebase.storage().ref();
   
       // create a new child reference with a unique name
-      const uniqid = Date.now();
-      const photoRef = storageRef.child('profile/' + uniqid);
+      const photoRef = storageRef.child('profile/' + fileName);
   
       // upload the file to the storage reference
       const uploadTask = photoRef.put(file);

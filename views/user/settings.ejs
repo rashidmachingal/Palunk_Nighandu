@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Palunk Nighandu</title>
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- header imports -->
+    <!-- custom javascript -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js" defer ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js" defer ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js" defer ></script>
+    <script src="/js/user/auth.js" defer ></script>
+    <script src="/js/user/image-upload.js" defer ></script>
+    <script src="/js/user/settings.js" defer ></script>
+    <script src="/js/utils/utils.js" defer ></script>
+    <%- include('../partials/header') %>
+</head>
+<body>
+
+    <!-- navbar -->
+      <%- include('../partials/navbar') %>
+    <!-- navbar -->
+
+    <div class="w100 item-center" >
+        <div class="main-box" >
+          <ul class="top_bar" >
+            <li class="active" ><a href="/settings/change-profile">Change Profile</a></li>
+          </ul>
+
+          <form id="change_profile_form" autoComplete="on" class="form mt-1" >
+            <div class="form-group" >
+                <label>പ്രൊഫൈൽ ചിത്രം</label>
+                <input required id="profile_picture" name="profile_picture" accept="image/*" type="file" />
+                <span></span>
+            </div>
+
+            <div class="profile-preivew" >
+              <img id="profile_preivew" src="" >
+            </div>
+
+            <div class="form-group" >
+              <button type="submit" id="change_profile_update_btn" >അപ്ഡേറ്റ് ചെയ്യുക</button>
+            </div>
+        </form>
+        </div>
+
+
+     </div>
+ 
+     <!-- footer  -->
+       <%- include('../partials/footer') %>
+     <!-- footer  -->
+</body>
+</html>

@@ -63,5 +63,10 @@ router.get("/contributions", authVerfication, async (req, res) => {
     res.render("user/contributions", userContributions)
 })
 
+// serve settings page
+router.get("/settings/change-profile", authVerfication, async (req, res) => {
+    res.render("user/settings");
+})
+
 
 module.exports = router

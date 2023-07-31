@@ -14,7 +14,6 @@
     <script src="/js/user/auth.js" defer ></script>
     <script src="/js/user/image-upload.js" defer ></script>
     <script src="/js/utils/utils.js" defer ></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.977.0.min.js"></script>
     <!-- header imports -->
     <%- include('../partials/header') %>
 </head>
@@ -53,7 +52,7 @@
             </div>
             <div class="form-group" >
                 <label>പ്രൊഫൈൽ ചിത്രം</label>
-                <input id="profile_picture" name="profile_picture" type="file" />
+                <input id="profile_picture" name="profile_picture" type="file" accept="image/*" />
                 <span></span>
             </div>
 
