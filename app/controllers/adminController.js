@@ -83,15 +83,13 @@ const rejectContributionEditMeaning = async (req, res) => {
         },
         { $set: { 'contributions.$.approved': false } },
         { new: true }
-      );
+      );ss
 
       await updateUser.save();
   
 
     }
 
-
-  
     res.redirect("/admin/edits")
   } catch (error) {
     console.error(error);
