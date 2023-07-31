@@ -95,8 +95,10 @@ addNewWordform.addEventListener("submit", (event) => {
 
     // if word added successfully
     if(res.status === 201){
-        alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ പദം അവലോകനത്തിനു ശേഷം നിഘണ്ടുവില്‍ ചേര്‍ക്കുന്നതാണ്‌.`)
-            location.reload()
+        alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ പദം വിജയകരമായി നിഘണ്ടുവില്‍ ചേർത്തു.`)
+        res.json().then((data) => {
+            location.href = `/english-malayalam/${data?.word?.english_word}`
+        })
         }
     })  
 })
