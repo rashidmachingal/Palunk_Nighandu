@@ -44,7 +44,7 @@
                   
                  <div class="amd-hold" >
                  <% if (element.user_logged) { %>
-                  <a href="" class="by-user" >
+                  <a href="<%= element.user_details[0].social_media %>" class="by-user" >
                     by
                     <img src="<%= element.user_details[0].profile_picture %>" alt="">
                     <%= element.user_details[0].user_name %>
@@ -52,7 +52,7 @@
                  <% } %>
 
                  <% if (element.user_logged === false) { %>
-                  <a href="" class="by-user" >
+                  <a href="/" class="by-user" >
                     by
                     <img src="/img/avatar.png" alt="">
                     Anonymous User

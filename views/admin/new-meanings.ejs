@@ -27,7 +27,7 @@
               <% newMeaningsData.reverse().forEach((element) => { %>
                 <p>
                   <i class="fa-solid fa-arrow-right"></i> 
-                  <a href="/" class="eng" ><%= element.main_word %></a> എന്ന വാക്കിലേക്ക് 
+                  <a href="/english-malayalam/<%= element.main_word %>" class="eng" ><%= element.main_word %></a> എന്ന വാക്കിലേക്ക് 
                   <span class="mal" >
                     <%= element.changed_data[0].definition %> 
                    <% if (element.changed_data[0].part_of_speech !== "-") { %>
@@ -38,7 +38,7 @@
                   
                  <div class="amd-hold" >
                  <% if (element.user_logged) { %>
-                  <a href="" class="by-user" >
+                  <a href="<%= element.user_details[0].social_media %>" class="by-user" >
                     by
                     <img src="<%= element.user_details[0].profile_picture %>" alt="">
                     <%= element.user_details[0].user_name %>
@@ -46,7 +46,7 @@
                  <% } %>
 
                  <% if (element.user_logged === false) { %>
-                  <a href="" class="by-user" >
+                  <a href="#" class="by-user" >
                     by
                     <img src="/img/avatar.png" alt="">
                     Anonymous User
