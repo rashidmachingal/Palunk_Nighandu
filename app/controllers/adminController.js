@@ -79,17 +79,14 @@ const rejectContributionEditMeaning = async (req, res) => {
       const updateUser = await User.findOneAndUpdate(
         {
           _id: req.params.user_id,
-          'contributions.key': req.params._id
+          'contributions.key': req.params.ref
         },
         { $set: { 'contributions.$.approved': false } },
         { new: true }
       );
 
       await updateUser.save();
-    
-      console.log(req.params.user_id)
-      console.log(req.params._id)
-     
+  
 
     }
 
@@ -109,6 +106,7 @@ const rejectContributionNewMeaning = async (req, res) => {
     // req.params._id for => find word meaning
     // req.params.for_change for => access change collection
     // req.params.user_id for access user details
+    // req.params.ref 
     
     // remove contribution from word meanings array
     await  Word.findByIdAndUpdate(req.params.key, { $pull: { meanings: { _id: req.params._id } } })
@@ -148,7 +146,7 @@ const rejectContributionNewMeaning = async (req, res) => {
       const updateUser = await User.findOneAndUpdate(
         {
           _id: req.params.user_id,
-          'contributions.key': req.params._id
+          'contributions.key': req.params.ref
         },
         { $set: { 'contributions.$.approved': false } },
         { new: true }
@@ -197,7 +195,7 @@ const setContributer = async (userInfo, foundedWord)  => {
 }
 
 // add change details to db
-const addChangeDetails = async (main_word, type, key, changed_data, old_data, user_logged, user_id) => {
+const addChangeDetails = async (main_word, type, key, changed_data, old_data, user_logged, user_id, ref) => {
 
   const changeData = new Change({
     main_word: main_word,
@@ -206,7 +204,8 @@ const addChangeDetails = async (main_word, type, key, changed_data, old_data, us
     changed_data: changed_data,
     old_data: old_data,
     user_logged: user_logged,
-    user_id: user_id
+    user_id: user_id,
+    ref: ref
   })
 
   await changeData.save();

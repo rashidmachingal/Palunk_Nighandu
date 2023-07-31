@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
         type: { type: String },
         changed_data: { type: Object },
         old_data: {type : Object},
-        key: { type: mongoose.Schema.Types.ObjectId },
+        key: { type: Number },
         approved: {type: Boolean}
       },
     ],

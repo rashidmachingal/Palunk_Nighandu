@@ -72,7 +72,7 @@
                               <%# element.key for => find english word %>
                               <%# element._id for => access change collection %>
                               <%# element.user_id for => find user %>
-                           <form onsubmit="return confirm('Are you sure you want to reject it?');" action="/admin/reject/edit/<%= element.changed_data[0]._id %>/<%= element.key %>/<%= element._id %>/<%= element.user_id || 'no_user' %>/<%= element.old_data[0].definition %>/<%= element.old_data[0].part_of_speech %>" method="post" >
+                           <form onsubmit="return confirm('Are you sure you want to reject it?');" action="/admin/reject/edit/<%= element.changed_data[0]._id %>/<%= element.key %>/<%= element._id %>/<%= element.user_id || 'no_user' %>/<%= element.old_data[0].definition %>/<%= element.old_data[0].part_of_speech %>/<%= element.ref %>" method="post" >
                              <button class="reject" >reject</button>
                            </form>
                     </div>

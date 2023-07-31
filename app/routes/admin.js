@@ -16,12 +16,12 @@ router.get("/edits", adminVerfication, async (req, res) => {
 })
 
 // reject contribution => new-meanings to exsting word 
-router.post("/reject/new-meanings/:_id/:key/:for_change/:user_id" , adminVerfication , (req, res) => {
+router.post("/reject/new-meanings/:_id/:key/:for_change/:user_id/:ref" , adminVerfication , (req, res) => {
     rejectContributionNewMeaning(req, res)
 })
 
 // reject contribution => edit meanings in exsting word 
-router.post("/reject/edit/:_id/:key/:for_change/:user_id/:old_meaning/:old_pos" , adminVerfication , (req, res) => {
+router.post("/reject/edit/:_id/:key/:for_change/:user_id/:old_meaning/:old_pos/:ref" , adminVerfication , (req, res) => {
     rejectContributionEditMeaning(req, res)
 })
 
