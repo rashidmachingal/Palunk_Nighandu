@@ -39,7 +39,7 @@ addPopupForm.addEventListener("submit", (event) => {
     options_post.body = JSON.stringify(newData)
     fetch(`/add-new-meaning/${englishWord.value}`, options_post).then((res) => {
     if(res.status === 200 ){
-        alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ പദം അവലോകനത്തിനു ശേഷം നിഘണ്ടുവില്‍ ചേര്‍ക്കുന്നതാണ്‌.`)
+        alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ പദം വിജയകരമായി നിഘണ്ടുവില്‍ ചേർത്തു.`)
         location.reload()
     }
     })

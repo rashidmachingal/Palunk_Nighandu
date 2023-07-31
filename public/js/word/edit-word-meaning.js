@@ -45,7 +45,7 @@ editPopupForm.addEventListener("submit", (event) => {
     options_post.body = JSON.stringify(updateData)
     fetch(`/edit-word-meaning/${wordId}`, options_post).then((res) => {
         if(res.status === 200){
-            alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ തിരുത്തൽ അവലോകനത്തിനു ശേഷം നിഘണ്ടുവില്‍ ചേര്‍ക്കുന്നതാണ്‌.`)
+            alert(`✅ മല്ലു നിഘണ്ടുവിന്റെ ഭാഗമയതിൽ നന്ദി. നിങ്ങളുടെ തിരുത്തൽ വിജയിച്ചു`)
             location.reload()
         }
     })
