@@ -5,6 +5,11 @@ Palunk Nighandu is a fresh English-to-Malayalam dictionary web application. It o
 
 As a fresh platform, the dictionary may not yet have an extensive database of word meanings.
 
+
+## Screenshots
+
+![App Screenshot](https://i.ibb.co/9ytfB13/palunk-nighandu.png)
+
 ## ഫീച്ചറുകൾ
 - Search words
 - Search suggetions
