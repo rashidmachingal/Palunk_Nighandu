@@ -47,7 +47,7 @@ As a fresh platform, the dictionary may not yet have an extensive database of wo
   JWT_SEC = jwt_secret_code
 
   # fill firebase config keys 
-  #only need if you want image upload functionality
+  # only need if you want image upload functionality
   apiKey = 
   authDomain = 
   projectId = 
