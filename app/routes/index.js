@@ -49,9 +49,18 @@ router.post("/edit-word-meaning/:wordId", async (req, res) => {
         console.log(error,"@error")
     }
   });
-  
 
-// sent firebase config keys
+// serve about page
+router.get("/what-is-palunk-nighandu", (req, res) => {
+    res.render("pages/what-is-palunk-nighandu")
+})
+
+// serve contact page
+router.get("/contact", (req, res) => {
+    res.render("pages/contact")
+}) 
+
+// set firebase config keys
 router.get("/firebase-config", (req, res) => {
     
     const firebaseConfig = {

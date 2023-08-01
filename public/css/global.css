@@ -472,3 +472,29 @@ button{
   display: none;
 }
 /* register profile preview end */
+
+/* about start */
+.about h1{
+  font-size: 20px;
+}
+
+.about div:first-of-type{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about div:first-of-type img{
+  border-radius: 50%;
+  width: 30px;
+}
+
+.about div:first-of-type h5{
+  font-weight: 400;
+}
+
+.about div:last-of-type{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
