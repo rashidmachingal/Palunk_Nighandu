@@ -21,6 +21,49 @@ As a fresh platform, the dictionary may not yet have an extensive database of wo
 - MongoDB - data base
 - Ejs - template engine
 
+## How to run project locally
+
+##### Step 1: Clone the repository
+```bash
+  git clone https://github.com/rashidmachingal/Palunk_Nighandu.git
+```
+##### Step 2: Go to the project directory
+
+```bash
+  cd Palunk_Nighandu
+```
+
+##### Step 3: Install dependencies
+
+```bash
+  npm install
+```
+
+##### Step 4: Create a new file named .env in the root directory. and set these enviroment variables
+
+```bash
+  # fill your mongo db uri
+  MONGO_URL = 
+  JWT_SEC = jwt_secret_code
+
+  #firebase config keys 
+  #only need if you want image upload functionality
+  apiKey = 
+  authDomain = 
+  projectId = 
+  storageBucket = 
+  messagingSenderId = 
+  appId = 
+  measurementId =
+```
+
+##### Step 5: Start the server
+
+```bash
+  npm run dev
+```
+
+
 ### Live Demo
 <a href="https://lonely-sweatpants-ant.cyclic.app/">Live Demo</a>
 
