@@ -46,7 +46,7 @@ As a fresh platform, the dictionary may not yet have an extensive database of wo
   MONGO_URL = 
   JWT_SEC = jwt_secret_code
 
-  #firebase config keys 
+  # fill firebase config keys 
   #only need if you want image upload functionality
   apiKey = 
   authDomain = 
