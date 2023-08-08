@@ -68,6 +68,13 @@ As a fresh platform, the dictionary may not yet have an extensive database of wo
   npm run dev
 ```
 
+## How to access admin dashboard
+
+#### Step 1: Create a account
+#### Step 2: Then logout 
+#### Step 3: Change the admin value to true in database
+#### Step 4: Login to that account
+
 
 ### Live Demo
 <a href="https://lonely-sweatpants-ant.cyclic.app/">Live Demo</a>
