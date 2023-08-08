@@ -77,5 +77,5 @@ As a fresh platform, the dictionary may not yet have an extensive database of wo
 
 
 ### Live Demo
-<a href="https://lonely-sweatpants-ant.cyclic.app/">Live Demo</a>
+<a href="https://www.palunknighandu.in">Live Demo</a>
 
