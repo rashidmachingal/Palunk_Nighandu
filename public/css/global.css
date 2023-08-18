@@ -65,6 +65,10 @@ button{
   background-color: #FFBABA;
   display: none;
 }
+
+.display-flex{ display: flex; }
+.flex-direction-column{ flex-direction: column; }
+.gap-1{ gap: 1rem; }
 /* common styles end */
 
 /* navbar stat */
