@@ -2,6 +2,7 @@ const express = require("express");
 const { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning } = require("../controllers/wordController");
 const { authVerfication, getUser } = require("../utils/authUtils");
 const router = express.Router();
+const path = require('path');
 
 // serve home page
 router.get("/", (req, res) => {
@@ -76,4 +77,15 @@ router.get("/firebase-config", (req, res) => {
     res.json(firebaseConfig)
 })
 
+// server sitemap
+router.get('/sitemap.xml', function(req, res) {
+    const filePath = path.join(__dirname, '..', '..', 'sitemap.xml');
+    res.sendFile(filePath);
+});
+
+// serve robots
+router.get('/robots.txt', (req, res) => {
+    const filePath = path.join(__dirname, '..', '..', 'robots.txt');
+    res.sendFile(filePath);
+})
 module.exports = router
