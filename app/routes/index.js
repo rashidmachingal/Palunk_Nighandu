@@ -88,4 +88,10 @@ router.get('/robots.txt', (req, res) => {
     const filePath = path.join(__dirname, '..', '..', 'robots.txt');
     res.sendFile(filePath);
 })
+
+// serve ads.txt
+router.get('/ads.txt', (req, res) => {
+    const filePath = path.join(__dirname, '..', '..', 'ads.txt');
+    res.sendFile(filePath);
+})
 module.exports = router
