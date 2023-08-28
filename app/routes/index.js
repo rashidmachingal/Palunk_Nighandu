@@ -3,6 +3,7 @@ const { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning } = requir
 const { authVerfication, getUser } = require("../utils/authUtils");
 const router = express.Router();
 const path = require('path');
+const fs = require("fs"); 
 
 // serve home page
 router.get("/", (req, res) => {
@@ -77,10 +78,24 @@ router.get("/firebase-config", (req, res) => {
     res.json(firebaseConfig)
 })
 
-// server sitemap
+// server sitemap index
 router.get('/sitemap.xml', function(req, res) {
-    const filePath = path.join(__dirname, '..', '..', 'sitemap.xml');
+    const filePath = path.join(__dirname, '..', '..', 'sitemap-index.xml');
     res.sendFile(filePath);
+});
+
+// Dynamic sitemap route
+router.get('/sitemap-:index.xml', function(req, res) {
+    const sitemapIndex = req.params.index; // Get the sitemap index from the URL parameter
+    const filePath = path.join(__dirname, '..', '..', 'sitemaps', `sitemap-${sitemapIndex}.xml`);
+    
+    // Check if the file exists before sending it
+    if (fs.existsSync(filePath)) {
+        res.sendFile(filePath);
+    } else {
+        // Return a 404 Not Found response if the file doesn't exist
+        res.status(404).send('Sitemap not found');
+    }
 });
 
 // serve robots
