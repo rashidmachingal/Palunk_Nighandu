@@ -79,7 +79,7 @@ router.get("/firebase-config", (req, res) => {
 })
 
 // server sitemap index
-router.get('/sitemap.xml', function(req, res) {
+router.get('/sitemap-index.xml', function(req, res) {
     const filePath = path.join(__dirname, '..', '..', 'sitemap-index.xml');
     res.sendFile(filePath);
 });

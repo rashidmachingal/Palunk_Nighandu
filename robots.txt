@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.palunknighandu.in/sitemap.xml
+Sitemap: https://www.palunknighandu.in/sitemap-index.xml
+Sitemap: https://www.palunknighandu.in/sitemap-1.xml
+Sitemap: https://www.palunknighandu.in/sitemap-2.xml
+Sitemap: https://www.palunknighandu.in/sitemap-3.xml
+Sitemap: https://www.palunknighandu.in/sitemap-4.xml
+Sitemap: https://www.palunknighandu.in/sitemap-5.xml
+Sitemap: https://www.palunknighandu.in/sitemap-6.xml
+Sitemap: https://www.palunknighandu.in/sitemap-7.xml
+Sitemap: https://www.palunknighandu.in/sitemap-8.xml
+Sitemap: https://www.palunknighandu.in/sitemap-9.xml
+Sitemap: https://www.palunknighandu.in/sitemap-10.xml
