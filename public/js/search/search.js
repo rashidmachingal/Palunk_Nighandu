@@ -55,7 +55,7 @@ searchButton.addEventListener("click", () => {
 })
 
 function handleSearch() {
-  let searchValue = searchInput.value.trim().replace(/\s+/g, "-")
+  let searchValue = searchInput.value.trim().replace(/\s+/g, "-").toLowerCase();
   if(!searchValue || /\d/.test(searchValue) ) return
   window.location.href = `/english-malayalam/${searchValue}` 
 }
