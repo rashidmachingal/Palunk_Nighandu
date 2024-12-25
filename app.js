@@ -27,7 +27,7 @@ app.use(express.static(__dirname + "/public"));
 
 // start the server + mongodb connection
 mongoose.connect(process.env.MONGO_URL).then(() => {
-    app.listen(process.env.PORT || 3001, () => {
+    app.listen(process.env.PORT || 3002, () => {
       console.log("server running & db connection succesful")
     });
 })
