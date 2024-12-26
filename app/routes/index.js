@@ -1,6 +1,6 @@
 const express = require("express");
 const { getWordMeaning, addNewWord, addMeaningToWord, editWordMeaning } = require("../controllers/wordController");
-const { authVerfication, getUser } = require("../utils/authUtils");
+const { getUser } = require("../utils/authUtils");
 const router = express.Router();
 const path = require('path');
 const fs = require("fs"); 
@@ -15,6 +15,13 @@ router.get("/english-malayalam/:word", async (req, res) => {
     const english_word = req.params.word.replace(/-/g, " ");
     const data = await getWordMeaning(english_word)
     res.render("pages/result", data)
+})
+
+// get results in json format
+router.get("/json/english-malayalam/:word", async (req, res) => {
+    const english_word = req.params.word.replace(/-/g, " ");
+    const data = await getWordMeaning(english_word)
+    res.json(data)
 })
 
 // serve add new word page
